@@ -1,16 +1,24 @@
+# RankAggSIgFUR: Polynomially Bounded Rank Aggregation Algorithms under Kemeny's Axiomatic Approach 
+
+#### *Hannah Parker, parkerhannah09@gmail.com*
+#### *Rakhi Singh, agrakhi@gmail.com*
+#### *Prakash Singh Badal, aprakashn@gmail.com*
+
+<!-- badges: start -->
+
 [![CRAN Status](https://www.r-pkg.org/badges/version/RankAggSIgFUR)](https://cran.r-project.org/package=RankAggSIgFUR)
 [![R-CMD-check](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/0o2rg3h22bbb4yt7/branch/main?svg=true)](https://ci.appveyor.com/project/prakashvs613/rankaggsigfur/branch/main)
 
-
-# RankAggSIgFUR: Polynomially Bounded Rank Aggregation Algorithms under Kemeny's Axiomatic Approach
+<!-- badges: end -->
 
 Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms -- FUR and SIgFUR -- are developed. The proposed algorithms are Polynomially bounded algorithms to aggregate complete rankings under Kemeny's axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, Subiterative Convergence and Greedy Algorithm.  The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see [Badal and Das (2018)](https://doi.org/10.1016/j.cor.2018.06.007). for more details.
 
 
 ## Development status
 
-This package is in submitted to CRAN. The programs are in stable development phase. Any major changes for complete rankings is unlikely at this time. New additions to include tied or incomplete rankings may be added over time.
+This package is submitted to CRAN. The programs are in stable development phase. Any major changes for complete rankings is unlikely at this time. New additions to include tied or incomplete rankings may be added over time.
 
 ## Installation
 
