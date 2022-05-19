@@ -1,10 +1,11 @@
 [![CRAN Status](https://www.r-pkg.org/badges/version/RankAggSIgFUR)](https://cran.r-project.org/package=RankAggSIgFUR)
-[![Travis build status](https://travis-ci.com/prakashvs613/RankAggSIgFUR.svg?branch=master)](https://travis-ci.org/prakashvs613/RankAggSIgFUR)
+[![R-CMD-check](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml)
 
 
 # RankAggSIgFUR: Polynomially Bounded Rank Aggregation Algorithms under Kemeny's Axiomatic Approach
 
-Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms -- FUR and SIgFUR -- are developed. The proposed algorithms are Polynomially bounded algorithms to aggregate complete rankings under Kemeny's axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, Subiterative Convergence and Greedy Algorithm.  The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see Badal and Das (2018) (10.1016/j.cor.2018.06.007) (URL: https://doi.org/10.1016/j.cor.2018.06.007). for more details.
+Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms -- FUR and SIgFUR -- are developed. The proposed algorithms are Polynomially bounded algorithms to aggregate complete rankings under Kemeny's axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, Subiterative Convergence and Greedy Algorithm.  The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see [Badal and Das (2018)](https://doi.org/10.1016/j.cor.2018.06.007). for more details.
 
 
 ## Development status
@@ -71,7 +72,7 @@ Check out the vignettes for more examples and details.
 
 ## References
 
-Badal PS, Das A (2018). “Efficient algorithms using subiterative convergence for Kemeny ranking problem.” _Computers & Operations Research_, *98*, 198-210. doi: 10.1016/j.cor.2018.06.007 (URL: https://doi.org/10.1016/j.cor.2018.06.007).
+Badal PS, Das A (2018). “Efficient algorithms using subiterative convergence for Kemeny ranking problem.” _Computers & Operations Research_, *98*, 198-210. doi: [10.1016/j.cor.2018.06.007](https://doi.org/10.1016/j.cor.2018.06.007).
 
-Emond EJ, Mason DW (2002). “A new rank correlation coefficient with application to the consensus ranking problem.” _Journal of Multi-Criteria Decision_, *11*(1), 17-28. doi: 10.1002/mcda.313 (URL: https://doi.org/10.1002/mcda.313).
+Emond EJ, Mason DW (2002). “A new rank correlation coefficient with application to the consensus ranking problem.” _Journal of Multi-Criteria Decision_, *11*(1), 17-28. doi: [10.1002/mcda.313](https://doi.org/10.1002/mcda.313).
 
