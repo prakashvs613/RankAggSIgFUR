@@ -1,0 +1,9 @@
+.Rproj.user
+.bak
+.Rhistory
+.RData
+.Ruserdata
+inst/doc
+/doc/
+/Meta/
+.ini

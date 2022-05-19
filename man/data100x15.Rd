@@ -3,7 +3,7 @@
 \docType{data}
 \name{data100x15}
 \alias{data100x15}
-\title{Simulated 100 x 15 Data}
+\title{Simulated 100  \eqn{\times}{ X }  15 Data}
 \format{
 A data frame with 100 rows and 16 columns:
 \describe{
@@ -28,7 +28,7 @@ A data frame with 100 rows and 16 columns:
 \source{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 }
 \usage{
 data(data100x15)
@@ -36,7 +36,7 @@ data(data100x15)
 \description{
 Data of 100 objects and 15 attributes, in which the first column contains the object
 names and each subsequent column is a complete ranking of the 100 objects. The
-included 50 x 15 and 400 x 15 datasets were generated from this dataset (see
+included 50  \eqn{\times}{ X }  15 and 400  \eqn{\times}{ X }  15 datasets were generated from this dataset (see
 \code{\link{data50x15}} and \code{\link{data400x15}}).
 }
 \examples{

@@ -14,37 +14,39 @@ sigfur(
 }
 \arguments{
 \item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each row is a complete ranking.}
+objects, where each column is a complete ranking.}
 
 \item{subit_len_list_sbi}{a vector containing positive integer(s) for the subiteration
-lengths to \emph{Seed-Based Iteration}.}
+lengths to \emph{Seed-Based Iteration}. Recommended values are between 2 and 8.
+Smaller subiteration lengths result in shorter run-time.}
 
-\item{omega_sbi}{a non-negative integer for the number of repetitions of perturbing
-the seed ranking in \emph{Seed-Based Iteration}. An omega value of 1 corresponds to the immediate convergence
-of the \emph{Subiterative Convergence} algorithm, where \emph{Subiterative Convergence}
-completes only one iteration.}
+\item{omega_sbi}{a positive integer for the number of repetitions of perturbing
+the seed ranking in \emph{Seed-Based Iteration}. An \code{omega_sbi} value of 1
+corresponds to a single application of \emph{Subiterative Convergence}.}
 
 \item{subit_len_list_fur}{a vector containing positive integer(s) for the subiteration
 lengths to \emph{FUR}.}
 
-\item{search_radius}{a positive integer of the maximum amount allowed to increase or decrease
-the rank of each object for \emph{Greedy Algorithm} and \emph{FUR}.}
+\item{search_radius}{a positive integer for the maximum change in the rank of each
+object in the \emph{Greedy Algorithm} and \emph{FUR}. The default value
+of \code{0} considers all possible rank changes for each object. It is
+recommended to use a search radius of less than or equal to \eqn{\min(30, \lfloor \mbox{n}/2 \rfloor)}{min(30, floor(n/2))}.}
 }
 \value{
-A matrix containing the consensus ranking, total Kemeny distance, average
-tau correlation coefficient.
+A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+tau correlation coefficient corresponding to the consensus ranking.
 }
 \description{
 \emph{SIgFUR} applies \emph{Seed-Based Iteration}, \emph{Greedy Algorithm},
-and \emph{FUR} for each subiteration length of \emph{Subiterative Convergence}. The
-mean seed ranking is used as the input to \emph{Seed-Based Iteration} and the outut
-of each function is used as the input ranking to the next function. Finally,
-the best ranking from all output rankings from \emph{FUR} is considered the consensus
+and \emph{FUR} in sequence for each element of \code{subit_len_list_sbi}. The
+\emph{mean seed ranking} is used as the input to \emph{Seed-Based Iteration}.
+The best of all output rankings from \emph{FUR} is considered as the consensus
 ranking.
 }
 \examples{
 ## Four input rankings of five objects
-input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = 5)
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+    byrow = FALSE, ncol = 4)
 subit_len_list_sbi <- c(2:3)
 omega_sbi <- 10
 subit_len_list_fur <- c(2:3)
@@ -54,10 +56,10 @@ sigfur(input_rkgs, subit_len_list_sbi, omega_sbi, subit_len_list_fur, search_rad
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)
-input_rkgs <- t(as.matrix(data50x15[, -1]))
-subit_len_list_sbi <- c(6)
-omega_sbi <- 10
-subit_len_list_fur <- c(3:5)
+input_rkgs <- as.matrix(data50x15[, -1])
+subit_len_list_sbi <- c(3)
+omega_sbi <- 5
+subit_len_list_fur <- c(2:3)
 search_radius <- 1
 sigfur(input_rkgs, subit_len_list_sbi, omega_sbi, subit_len_list_fur, search_radius)
 
@@ -65,7 +67,7 @@ sigfur(input_rkgs, subit_len_list_sbi, omega_sbi, subit_len_list_fur, search_rad
 \references{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 }
 \seealso{
 \code{\link{seed_based_iteration}}, \code{\link{rap_greedy_alg}}, \code{\link{fur}}

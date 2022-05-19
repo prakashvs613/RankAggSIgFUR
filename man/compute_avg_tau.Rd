@@ -2,7 +2,7 @@
 % Please edit documentation in R/compute_avg_tau.R
 \name{compute_avg_tau}
 \alias{compute_avg_tau}
-\title{Compute Average Tau}
+\title{Compute Average tau}
 \usage{
 compute_avg_tau(total_K, n, k)
 }
@@ -25,6 +25,6 @@ While it is more common, total Kemeny distance may be preferred to avoid roundin
 }
 \references{
 Emond, E. J., & Mason, D. W. (2002). A new rank correlation coefficient with
-application to the consensus ranking problem. Journal of Multi‐Criteria Decision
-Analysis, 11(1), 17-28.
+application to the consensus ranking problem. Journal of Multi-Criteria Decision
+Analysis, 11(1), 17-28. \doi{10.1002/mcda.313}
 }

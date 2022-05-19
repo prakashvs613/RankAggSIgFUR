@@ -7,7 +7,7 @@
 mean_seed(input_rkgs)
 }
 \arguments{
-\item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n} objects, where each row is
+\item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n} objects, where each column is
 a complete ranking.}
 }
 \value{
@@ -16,7 +16,7 @@ A vector containing the mean seed ranking of the input rankings.
 \description{
 Determine the \emph{mean seed ranking} of the given input rankings.
 The average rank of an object is the sum of its various rankings from each input
-ranking divided by the total number of objects. The mean seed ranking is formed
+ranking divided by the total number of rankings. The mean seed ranking is formed
 by ranking the objects based on their average ranks, and ties are broken by ranking
 the first tied object with a higher rank.
 }

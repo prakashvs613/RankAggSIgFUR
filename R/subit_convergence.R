@@ -1,13 +1,11 @@
 #' Subiterative Convergence
 #'
 #' @description \emph{Subiterative Convergence} finds the consensus ranking by iteratively applying the
-#' \emph{Modified Kemeny} algorithm on smaller number of objects, $\eta$. Starting with a given seed
-#' ranking, the consensus ranking is obtained when the algorithm converges. 
+#' \emph{Modified Kemeny} algorithm on smaller number of objects, \eqn{\eta}{eta}. Starting with a given seed
+#' ranking, the consensus ranking is obtained when the algorithm converges.
 #'
-#' @param eta, the subiteration lengths a positive integer for to \emph{Subiterative Convergence}. 
-#' 
 #' @param eta a subiteration length of number of objects to consider in the smaller
-#' subset. Recommended \code{eta} values are between 2 and 8. Smaller \code{eta} values result in shorter run-time. 
+#' subset. Recommended \code{eta} values are between 2 and 8. Smaller \code{eta} values result in shorter run-time.
 #'
 #' @param seed_rkg an initial ranking to start the algorithm. An ideal seed ranking for
 #' \emph{Subiterative Convergence} is the \emph{mean seed ranking} of input rankings.
@@ -18,12 +16,12 @@
 #' @param universe_rkgs a matrix containing all possible permutations of ranking
 #' \code{n} objects. Each column in this matrix represents one permuted ranking.
 #'
-#' @return A matrix containing the consensus ranking, total Kemeny distance, and
-#' average tau correlation coefficient.
+#' @return A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+#' tau correlation coefficient corresponding to the consensus ranking.
 #'
 #' @references Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-#' \url{https://doi.org/10.1016/j.cor.2018.06.007}
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @seealso \code{\link{mod_kemeny}}, \code{\link{fur}}, \code{\link{sigfur}}, \code{\link{mean_seed}}
 #'
@@ -31,26 +29,29 @@
 #' ## Four input rankings of five objects
 #' eta <- 3
 #' seed_rkg <- c(1, 2, 3, 4, 5)
-#' input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = 5)
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+#'     byrow = FALSE, ncol = 4)
 #' subit_convergence(eta, seed_rkg, input_rkgs) # Determined the consensus ranking, total Kemeny
 #'                                              # distance, and average tau correlation coefficient
 #'
 #' ## Example with eta=1
 #' eta <- 1
 #' seed_rkg <- c(1, 2, 3, 4, 5)
-#' input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = 5)
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+#'     byrow = FALSE, ncol = 4)
 #' subit_convergence(eta, seed_rkg, input_rkgs) # Shows a warning and returns seed ranking
 #'
 #' ## Included dataset of 15 input rankings of 50 objects
 #' data(data50x15)
-#' input_rkgs <- t(as.matrix(data50x15[, -1]))
-#' mean_seed_rkg <- mean_seed(input_rkgs) # Use the mean seed ranking as the seed ranking
+#' input_rkgs <- as.matrix(data50x15[, -1])
+#' mean_seed_rkg <- mean_seed(t(input_rkgs)) # Use the mean seed ranking as the seed ranking
 #' eta <- 2
 #' subit_convergence(eta, seed_rkg = mean_seed_rkg, input_rkgs)
 #'
 #' @export
 
 subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
+  input_rkgs <- t(input_rkgs)
   in_eq_out <- F
   n <- dim(input_rkgs)[2]
   k <- dim(input_rkgs)[1]
@@ -67,7 +68,7 @@ subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
   if (eta == 1) {
     warning("Caution: eta=1 has no effect on subiteration converence, so the intial starting ranking is returned.")
     out_rkg <- seed_rkg
-    totK <- score_one_totalK(out_rkg, input_rkgs, obj_pairs_full)[1]
+    totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full)[1]
 
   } else{
 
@@ -93,11 +94,10 @@ subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
       # Subiterations
       for (i in 1:(n - eta + 1)) {
         # Get subset of rankings for the current eta-th objects
-        sub_rkgs = Rfast::rowRanks(input_rkgs[, objs], method = "first")
-
+        sub_rkgs = Rfast::rowRanks(input_rkgs[,objs], method = "first")
         # Get the optimal kemeny ranking of the subset
-        mod_out <- mod_kemeny_int(sub_rkgs, universe_rkgs, obj_pairs)
-
+        mod_out1 <- mod_kemeny(sub_rkgs, universe_rkgs, obj_pairs)
+        mod_out <- matrix(unlist(mod_out1), nrow = 1, byrow = T)
         # Determines the index of ranking in ascending order
         inds <- unlist(sapply(c(1:eta), get_indices, y = mod_out[, 1:eta]))
 
@@ -146,18 +146,19 @@ subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
     #if not converged in 200 iterations, determine the consensus ranking
     # among the 200 output rankings
     if(in_eq_out == F & iter > itermax) {
-      totKAll <- score_all_totalK(out_rkgs, input_rkgs, obj_pairs_full)[,1]
+      totKAll <- totalKem_mult(out_rkgs, input_rkgs, obj_pairs_full)[,1]
       ind_out = which.min(totKAll)
       out_rkg = out_rkgs[ind_out, ]
 
       # Get the total Kemeny distance of the converged output ranking
     } else {
-      totK <- score_one_totalK(out_rkg, input_rkgs, obj_pairs_full)[1]
+      totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full)[1]
     }
   }
 
   avg_tau <- compute_avg_tau(totK, n, k)
   results <- matrix(c(out_rkg, totK, avg_tau), nrow = 1)
-  return(results)
+  return(list(ConsensusRanking = c(out_rkg), KemenyDistance = totK,
+              tau = avg_tau))
 }
 

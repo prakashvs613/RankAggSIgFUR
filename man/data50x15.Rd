@@ -3,7 +3,7 @@
 \docType{data}
 \name{data50x15}
 \alias{data50x15}
-\title{Simulated 50 x 15 Data}
+\title{Simulated 50  \eqn{\times}{ X }  15 Data}
 \format{
 A data frame with 50 rows and 16 columns:
 \describe{
@@ -28,14 +28,14 @@ A data frame with 50 rows and 16 columns:
 \source{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 }
 \usage{
 data(data50x15)
 }
 \description{
 Data of 50 objects and 15 attributes, which were randomly generated from the
-100 x 15 simulated dataset (see \code{\link{data100x15}}). The first column contains the object
+100  \eqn{\times}{ X }  15 simulated dataset (see \code{\link{data100x15}}). The first column contains the object
 names and each subsequent column is a complete ranking of the 50 objects.
 }
 \examples{

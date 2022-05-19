@@ -6,11 +6,11 @@
 #' In case of multiple rankings with minimum total Kemeny distance, the consensus ranking is
 #' determined using two additional criteria. See `Details' for additional criteria.
 #' The method involves \code{n}! comparisons. Hence, it works best on a set of rankings with a small
-#' number of objects. 
+#' number of objects.
 #'
 #' @details Under Kemeny's axiomatic approach, rankings with minimum total Kemeny distance are
 #' considered equally optimal. Modified Kemeny attempts to break the tie among such rankings by
-#' imposing two additional criteria on the basis of minimizing (a) the maximum and (b) the variance 
+#' imposing two additional criteria on the basis of minimizing (a) the maximum and (b) the variance
 #' of individual Kemeny distances, applied sequentially.
 #'
 #' @param input_rkgs a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
@@ -22,8 +22,12 @@
 #' @param obj_pairs a \code{2} by \code{n choose 2} matrix of all combinations of
 #' object pairs of n objects, where each column contains a pair of object indices.
 #'
-#' @return A matrix containing the consensus ranking, total Kemeny distance, and
-#' average tau correlation coefficient.
+#' @return A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+#' tau correlation coefficient corresponding to the consensus ranking.
+#'
+#' @references Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
+#' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @examples
 #' ## Consensus ranking from four rankings of five objects
@@ -36,6 +40,7 @@
 #'
 #' @export
 #'
+# Kemeny distances
 mod_kemeny <- function(input_rkgs, universe_rkgs, obj_pairs) {
   n <- dim(input_rkgs)[2]
   k <- dim(input_rkgs)[1]
@@ -46,7 +51,7 @@ mod_kemeny <- function(input_rkgs, universe_rkgs, obj_pairs) {
 
   # Get the total Kemeny distances, max Kemeny distances and variances for each
   # of the universe rankings and input rankings
-  kem_dists <- score_all_totalK(universe_rkgs, input_rkgs, obj_pairs)
+  kem_dists <- totalKem_mult(universe_rkgs, input_rkgs, obj_pairs)
   tot_kem_dists <- kem_dists[,1]
   max_kem_dists <- kem_dists[,2]
   var_kem_dists <- kem_dists[,3]
@@ -82,6 +87,7 @@ mod_kemeny <- function(input_rkgs, universe_rkgs, obj_pairs) {
   totK <- tot_kem_dists[i_min_totK]
   avg_tau <- compute_avg_tau(totK, n, k)
 
-  results <- list("Consensus Ranking" = consensus, "Total Kemeny Distance" = totK, "Average Tau" = avg_tau)
-  return(results)
+  results <- matrix(c(consensus,totK, avg_tau), nrow = 1)
+  return(list(ConsensusRanking = consensus, KemenyDistance = totK,
+              tau = avg_tau))
 }

@@ -1,8 +1,8 @@
-#' Simulated 400 $\times$ 15 Data
+#' Simulated 400  \eqn{\times}{ X }  15 Data
 #'
 #' Data of 400 objects and 15 attributes in which the first column contains the object
 #' names and each subsequent column is a complete ranking of the 400 objects. This
-#' data set is generated from the 100 $\times$ 15 dataset (see \code{\link{data50x15}})
+#' data set is generated from the 100 \eqn{\times}{ X } 15 dataset (see \code{\link{data50x15}})
 #' by adding 100 to the ranks of the objects numbered 1 through 100 to get the ranks of
 #' objects numbered 101 through 200. Similarly, by adding 200 to obtain ranking 201
 #' through 300, and by adding 300 to obtain ranking 301 through 400.
@@ -35,7 +35,7 @@
 #'
 #' @source Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-#' \url{https://doi.org/10.1016/j.cor.2018.06.007}
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @examples
 #' data(data400x15)

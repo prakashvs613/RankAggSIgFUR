@@ -3,15 +3,15 @@
 \docType{data}
 \name{data240x4}
 \alias{data240x4}
-\title{PrefLib 240x4 Data}
+\title{PrefLib 240  \eqn{\times}{ X } 4 Data}
 \format{
 A data frame with 240 rows and 5 columns:
 \describe{
 \item{Object}{object name}
-\item{Ranking 1}{ranking by the first judge}
-\item{Ranking 2}{ranking by the second judge}
-\item{Ranking 3}{ranking by the third judge}
-\item{Ranking 4}{ranking by the fourth judge}
+\item{Ranking 1}{ranking on the first criterion}
+\item{Ranking 2}{ranking on the second criterion}
+\item{Ranking 3}{ranking on the third criterion}
+\item{Ranking 4}{ranking on the fourth criterion}
 }
 }
 \source{
@@ -21,7 +21,7 @@ A data frame with 240 rows and 5 columns:
 data(data240x4)
 }
 \description{
-Data of 240 cities across the globe ranked by four judges from the
+Data of 240 cities across the globe ranked on four criteria from the
 ED-00015-001.soc dataset in the PrefLib repository. The first column contains
 the object names and each subsequent column is a complete ranking of the 240
 objects with no ties)
@@ -38,10 +38,10 @@ mean_seed(input_rkgs)
 \references{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 
 Mattei, N., & Walsh, T. (2013, November). Preflib: A library for
-preferences \url{http://www. preflib.org}. In International conference on algorithmic
+preferences \url{http://www.preflib.org/}. In International conference on algorithmic
 decision theory (pp. 259-270). Springer, Berlin, Heidelberg.
 }
 \keyword{datasets}

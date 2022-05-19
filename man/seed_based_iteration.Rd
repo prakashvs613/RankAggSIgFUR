@@ -7,28 +7,28 @@
 seed_based_iteration(eta, omega, input_rkgs)
 }
 \arguments{
-\item{eta}{a subiteration length for \emph{Subiterative Convergence}, which
-determines how many objects to consider in the smaller subset of objects.
-The subiteration length may range between 2 and the total number of objects.}
+\item{eta}{a subiteration length for intermittent \emph{Subiterative Convergence}. The recommended
+values are between 2 and 8. Smaller subiteration lengths result in shorter run-time.}
 
-\item{omega}{a non-negative integer for the number of repetitions of perturbing
-the seed ranking. An omega value of 1 corresponds to the immediate convergence
-of the \emph{Subiterative Convergence} algorithm, where \emph{Subiterative Convergence}
-completes only one iteration.}
+\item{omega}{a positive integer for the number of repetitions of perturbing
+the seed ranking. An \code{omega} value of 1 corresponds to a single application of
+\emph{Subiterative Convergence}.}
 
 \item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each row is a complete ranking.}
+objects, where each column is a complete ranking.}
 }
 \value{
-A matrix containing the consensus ranking and total Kemeny distance.
+A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+tau correlation coefficient corresponding to the consensus ranking.
 }
 \description{
-\emph{Seed-Based Iteration} is used in \emph{SIgFUR} to iteratively
-perturb the seed ranking to improve the consensus ranking solution. The algorithm
-begins by applying \emph{Subiterative Convergence} with a seed ranking of the
-mean seed ranking of the input rankings. If additional repetitions are required,
-then the algorithm perturbs the seed ranking by flipping its halves and applying
-\emph{Subiterative Convergence} to get a new input ranking.
+\emph{Seed-Based Iteration} is a heuristic-based seed generation used in \emph{SIgFUR}
+to iteratively perturb the ranking to improve the consensus ranking.
+}
+\references{
+Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
+convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
+\doi{10.1016/j.cor.2018.06.007}
 }
 \seealso{
 \code{\link{sigfur}}, \code{\link{subit_convergence}}, \code{\link{mean_seed}}

@@ -3,7 +3,7 @@
 \docType{data}
 \name{data400x15}
 \alias{data400x15}
-\title{Simulated 400 x 15 Data}
+\title{Simulated 400  \eqn{\times}{ X }  15 Data}
 \format{
 A data frame with 400 rows and 16 columns:
 \describe{
@@ -28,7 +28,7 @@ A data frame with 400 rows and 16 columns:
 \source{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 }
 \usage{
 data(data400x15)
@@ -36,10 +36,10 @@ data(data400x15)
 \description{
 Data of 400 objects and 15 attributes in which the first column contains the object
 names and each subsequent column is a complete ranking of the 400 objects. This
-data set is generated from the 100 x 15 dataset (see \code{\link{data50x15}})
-by adding 100 to the ranks of the objects numbered 1-100 to get the ranks of
-objects numbered 101-200, 200 to 1-100 to get 201-300, and 300 to 1-100 to
-get the rank of objects 301-400.
+data set is generated from the 100 \eqn{\times}{ X } 15 dataset (see \code{\link{data50x15}})
+by adding 100 to the ranks of the objects numbered 1 through 100 to get the ranks of
+objects numbered 101 through 200. Similarly, by adding 200 to obtain ranking 201
+through 300, and by adding 300 to obtain ranking 301 through 400.
 }
 \examples{
 data(data400x15)

@@ -1,23 +1,24 @@
 #' Seed-Based Iteration
 #'
-#' @description \emph{Seed-Based Iteration} is a heuristic-based seed generation used in \emph{SIgFUR} 
+#' @description \emph{Seed-Based Iteration} is a heuristic-based seed generation used in \emph{SIgFUR}
 #' to iteratively perturb the ranking to improve the consensus ranking.
 #'
-#' @param eta a subiteration length for intermittent \emph{Subiterative Convergence}. The recommended 
+#' @param eta a subiteration length for intermittent \emph{Subiterative Convergence}. The recommended
 #' values are between 2 and 8. Smaller subiteration lengths result in shorter run-time.
-#' 
+#'
 #' @param omega a positive integer for the number of repetitions of perturbing
-#' the seed ranking. An \code{omega} value of 1 corresponds to a single application of 
+#' the seed ranking. An \code{omega} value of 1 corresponds to a single application of
 #' \emph{Subiterative Convergence}.
 #'
 #' @param input_rkgs a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-#' objects, where each row is a complete ranking.
+#' objects, where each column is a complete ranking.
 #'
-#' @return A matrix containing the consensus ranking and total Kemeny distance.
+#' @return A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+#' tau correlation coefficient corresponding to the consensus ranking.
 #'
 #' @references Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-#' \url{https://doi.org/10.1016/j.cor.2018.06.007}
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @seealso \code{\link{sigfur}}, \code{\link{subit_convergence}}, \code{\link{mean_seed}}
 #'
@@ -33,7 +34,7 @@ seed_based_iteration <- function(eta, omega,input_rkgs) {
 
   # Find the mean seed ranking and use it as an input to Subiterative Convergence
   seed_rkg <- matrix(mean_seed(input_rkgs), nrow = 1)
-  out_rkg <- subit_convergence(eta, seed_rkg, input_rkgs, univ_rkgs)[1:n]
+  out_rkg <- subit_convergence(eta, seed_rkg, t(input_rkgs), univ_rkgs)$ConsensusRanking
   outinit_rkg <- out_rkg
 
   # Add the seed ranking to the list of input rankings and the output from
@@ -48,7 +49,7 @@ seed_based_iteration <- function(eta, omega,input_rkgs) {
     out_ordg <- order(out_rkg)
     new_input_ordg <- c(out_ordg[floor(n/2):1], out_ordg[n:(floor(n/2)+1)])
     new_input_rkg <- order(new_input_ordg)
-    new_out_rkg <- subit_convergence(eta, new_input_rkg, input_rkgs, univ_rkgs)[1:n]
+    new_out_rkg <- subit_convergence(eta, new_input_rkg, t(input_rkgs), univ_rkgs)$ConsensusRanking
 
     # Update input and output ranking lists
     input_rkg_list[2,] <- new_input_rkg
@@ -65,7 +66,7 @@ seed_based_iteration <- function(eta, omega,input_rkgs) {
       if (length(which(duplicated(rbind(gamma_loopomega, input_rkg_list[1:(loopomega-1), ]))[-1] == T)) >= 1){
 
         # The mean seed ranking is in the input ranking list, flip two halves of the
-        # previous input ranking
+        # previous output ranking
         gamma_ordg <- order(output_rkg_list[loopomega-1, ])
         new_input_ordg <- c(gamma_ordg[floor(n/2):1], gamma_ordg[n:(floor(n/2)+1)])
         new_input_rkg <- order(new_input_ordg)
@@ -78,7 +79,7 @@ seed_based_iteration <- function(eta, omega,input_rkgs) {
       }
 
       # Apply Subiterative Convergence and update the input and output rankin lists
-      new_out_rkg <- subit_convergence(eta, new_input_rkg, input_rkgs, univ_rkgs)[1:n]
+      new_out_rkg <- subit_convergence(eta, new_input_rkg, t(input_rkgs), univ_rkgs)$ConsensusRanking
       input_rkg_list[loopomega, ] <- new_input_rkg
       output_rkg_list[loopomega, ] <- new_out_rkg
     }
@@ -86,10 +87,10 @@ seed_based_iteration <- function(eta, omega,input_rkgs) {
 
   # Find the index of ranking with smallest Kemeny distance among the output
   # ranking list
-  all_K <- score_all_totalK(output_rkg_list, input_rkgs,pairs)[,1]
+  all_K <- totalKem_mult(output_rkg_list, input_rkgs,pairs)[,1]
   optimal_K <- which.min(all_K)
   results <- matrix(0, nrow = 1, ncol = n+1)
   results[1:n] <- output_rkg_list[optimal_K, ]
   results[n+1] <- all_K[optimal_K]
-  return(results)
+  return(list(ConsensusRanking = results[1:n], KemenyDistance = results[n+1]))
 }

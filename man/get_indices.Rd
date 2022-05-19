@@ -7,7 +7,7 @@
 get_indices(x, y)
 }
 \arguments{
-\item{x}{a vector of integers, typically a series from 1 to eta from \emph{Subiterative Convergence}.}
+\item{x}{a vector of integers, typically a series from 1 to \eqn{\eta}{eta} from \emph{Subiterative Convergence}.}
 
 \item{y}{a vector containing the ranking, typically the output from \emph{Modified Kemeny}.}
 }

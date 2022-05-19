@@ -1,4 +1,4 @@
-#' PrefLib 240 $\times$ 4 Data
+#' PrefLib 240  \eqn{\times}{ X } 4 Data
 #'
 #' Data of 240 cities across the globe ranked on four criteria from the
 #' ED-00015-001.soc dataset in the PrefLib repository. The first column contains
@@ -23,10 +23,10 @@
 #'
 #' @references Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-#' \url{https://doi.org/10.1016/j.cor.2018.06.007}
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @references Mattei, N., & Walsh, T. (2013, November). Preflib: A library for
-#' preferences \url{http://www. preflib.org}. In International conference on algorithmic
+#' preferences \url{http://www.preflib.org/}. In International conference on algorithmic
 #' decision theory (pp. 259-270). Springer, Berlin, Heidelberg.
 #'
 #' @source \url{https://www.preflib.org/}

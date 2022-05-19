@@ -2,13 +2,13 @@
 % Please edit documentation in R/mod_kemeny.R
 \name{mod_kemeny}
 \alias{mod_kemeny}
-\title{Modified Kemeny}
+\title{Modified Kemeny Rank Aggregation}
 \usage{
 mod_kemeny(input_rkgs, universe_rkgs, obj_pairs)
 }
 \arguments{
 \item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each row is a complete ranking.}
+objects, where each column is a complete ranking.}
 
 \item{universe_rkgs}{a matrix containing all possible permutations of ranking
 n objects. Each row in this matrix represents one permuted ranking.}
@@ -17,24 +17,23 @@ n objects. Each row in this matrix represents one permuted ranking.}
 object pairs of n objects, where each column contains a pair of object indices.}
 }
 \value{
-A matrix containing the consensus ranking, total Kemeny distance, and
-average tau correlation coefficient.
+A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+tau correlation coefficient corresponding to the consensus ranking.
 }
 \description{
-\emph{Modified Kemeny} algorithm determines the consensus ranking using
-the set of all possible rankings compared to the input rankings. Since this
-method takes \code{n}! comparisons, it works best on a set of rankings with a small
-number of objects. This algorithm is based on minimizing the combined Kemeny
-distance compared to the input rankings; however, see 'Details' for additional
-criteria to determine the consensus ranking if multiple rankings have the
-minimum total Kemeny distance.
+\emph{Modified Kemeny} algorithm determines the consensus ranking of \code{n} objects using
+the set of all possible rankings compared to the input rankings. The algorithm is based on
+Kemeny's axiomatic approach of minimizing the total Kemeny distance from the input rankings.
+In case of multiple rankings with minimum total Kemeny distance, the consensus ranking is
+determined using two additional criteria. See `Details' for additional criteria.
+The method involves \code{n}! comparisons. Hence, it works best on a set of rankings with a small
+number of objects.
 }
 \details{
-If multiple universe rankings have the minimum total Kemeny distance,
-then the smallest maximum Kemeny distance is considered. If there are multiple
-rankings remaining, the ranking(s) with the smallest variance are kept. Finally,
-if multiple rankings exist after filtering these conditions, then the first
-ranking is chosen as the single consensus ranking.
+Under Kemeny's axiomatic approach, rankings with minimum total Kemeny distance are
+considered equally optimal. Modified Kemeny attempts to break the tie among such rankings by
+imposing two additional criteria on the basis of minimizing (a) the maximum and (b) the variance
+of individual Kemeny distances, applied sequentially.
 }
 \examples{
 ## Consensus ranking from four rankings of five objects
@@ -45,4 +44,9 @@ obj_pairs <- combinat::combn(1:n,2, simplify=TRUE)
 mod_kemeny(input_rkgs, uni_rkgs, obj_pairs) # Computed consensus ranking, total Kemeny distance,
                                             # and average tau correlation coefficient
 
+}
+\references{
+Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
+convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
+\doi{10.1016/j.cor.2018.06.007}
 }

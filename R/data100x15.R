@@ -1,8 +1,8 @@
-#' Simulated 100 $\times$ 15 Data
+#' Simulated 100  \eqn{\times}{ X }  15 Data
 #'
 #' Data of 100 objects and 15 attributes, in which the first column contains the object
 #' names and each subsequent column is a complete ranking of the 100 objects. The
-#' included 50 $\times$ 15 and 400 $\times$ 15 datasets were generated from this dataset (see
+#' included 50  \eqn{\times}{ X }  15 and 400  \eqn{\times}{ X }  15 datasets were generated from this dataset (see
 #' \code{\link{data50x15}} and \code{\link{data400x15}}).
 #'
 #' @docType data
@@ -33,7 +33,7 @@
 #'
 #' @source Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-#' \url{https://doi.org/10.1016/j.cor.2018.06.007}
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @examples
 #' data(data100x15)

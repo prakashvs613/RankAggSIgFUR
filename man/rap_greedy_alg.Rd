@@ -7,51 +7,46 @@
 rap_greedy_alg(seed_rkg, input_rkgs, search_radius = 0)
 }
 \arguments{
-\item{seed_rkg}{a initial ranking to start with. This algorithm performs best using
-a seed ranking of the output from \emph{Subiterative Convergence} or the mean seed ranking
-of the input rankings. Careful selection of the seed ranking will affect the performance
-of our Greedy Algorithm.}
+\item{seed_rkg}{an initial ranking to begin the algorithm. The algorithm is often used in
+conjunction with \emph{Subiterative Convergence}.}
 
 \item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each row is a complete ranking.}
+objects, where each column is a complete ranking.}
 
-\item{search_radius}{a positive integer of the maximum amount allowed to increase or decrease
-the rank of each object. The default value of \code{0} is used to update the
-rank of each object to all possible ranks (i.e. the default search radius is the
-floor of n divided by 2).}
+\item{search_radius}{a positive integer for the maximum change in the rank of each
+object. The default value of \code{0} considers all possible rank changes for each object.
+Recommended value of search radius is less than or equal to \eqn{\min(30, \lfloor \mbox{n}/2 \rfloor)}{min(30, floor(n/2))}.}
 }
 \value{
-A matrix containing the consensus ranking, total Kemeny distance, average
-tau correlation coefficient.
+A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+tau correlation coefficient corresponding to the consensus ranking.
 }
 \description{
-\emph{Greedy Algorithm} is a heuristic method that finds the consensus ranking
-by increasing or decreasing the rank of one object at a time (i.e. moving an object
-in its ordering). If this new ranking has a smaller total Kemeny distance than
-the seed ranking, then it is selected as the consensus ranking. This process is
-repeated until the resulting consensus rankings converges to the seed ranking
-of each iteration.
+\emph{Greedy Algorithm} is a heuristic method that hunts for improved rankings
+by moving one object at a time (up or down). In case an object’s movement results in an
+improved ranking, the next object is moved with respect to this improved ranking. The process
+is repeated until all objects are considered once.
 }
 \examples{
 ## Four input rankings of five objects
 input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
-    byrow = TRUE, ncol = 5)
-mean_seed_rkg <- mean_seed(input_rkgs)
+    byrow = FALSE, ncol = 4)
+mean_seed_rkg <- mean_seed(t(input_rkgs))
 rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 0) # Determined the consensus ranking,
                                                              # total Kemeny distance, and average
                                                              # tau correlation coefficient
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)
-input_rkgs <- t(as.matrix(data50x15[, -1]))
-mean_seed_rkg <- mean_seed(input_rkgs) # Use the mean seed ranking as the seed ranking
+input_rkgs <- as.matrix(data50x15[, -1])
+mean_seed_rkg <- mean_seed(t(input_rkgs)) # Use the mean seed ranking as the seed ranking
 rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 1)
 
 }
 \references{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 }
 \seealso{
 \code{\link{subit_convergence}}

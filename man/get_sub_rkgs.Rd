@@ -7,11 +7,11 @@
 get_sub_rkgs(seed_rkg, move_ind, search_radius)
 }
 \arguments{
-\item{seed_rkg}{a vector containing the initial ranking for which subsequent moves will be based on.}
+\item{seed_rkg}{a vector containing the initial ranking on which subsequent moves will be based.}
 
-\item{move_ind}{an integer representing the index of which object should be moved.}
+\item{move_ind}{an integer representing the index of the object to be moved.}
 
-\item{search_radius}{a positive integer of the maximum amount allowed to increase or decrease
+\item{search_radius}{a positive integer of the maximum shift allowed to increase or decrease
 the rank of the object.}
 }
 \value{

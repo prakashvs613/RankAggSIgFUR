@@ -7,17 +7,18 @@ Authors@R: c(
    person("Hannah", "Parker", email = "parkerhannah09@gmail.com", role = "aut"),
    person("Prakash Singh", "Badal", email= "aprakashn@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-4097-8444")))
 Description: Polynomially bounded algorithms to aggregate complete rankings under Kemeny's axiomatic framework. SIgFUR and FUR are heuristics algorithms. Please see Badal and Das (2018) <doi:10.1016/j.cor.2018.06.007> for details.
-License: GPL (>= 3)
+License: GPL (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Depends: R (>= 2.10)
 LazyData: true
 Imports: Rfast, combinat
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
-NeedsCompilation: no
-Packaged: 2022-05-17 18:20:56 UTC; aprak
+NeedsCompilation: yes
+URL: https://github.com/prakashvs613/RankAggSIgFUR
+Packaged: 2022-05-18 23:05:08 UTC; aprak
 Author: Rakhi Singh [cre, aut] (<https://orcid.org/0000-0003-3469-295X>),
   Hannah Parker [aut],
   Prakash Singh Badal [aut] (<https://orcid.org/0000-0003-4097-8444>)

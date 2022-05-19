@@ -4,45 +4,46 @@
 \alias{fur}
 \title{FUR}
 \usage{
-fur(input_rkgs, subit_len_list, search_radius, starting_rkg = c())
+fur(input_rkgs, subit_len_list, search_radius, seed_rkg = c())
 }
 \arguments{
 \item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each row is a complete ranking.}
+objects, where each column is a complete ranking.}
 
 \item{subit_len_list}{a vector containing positive integer(s) for the subiteration
-lengths to \emph{Subiterative Convergence}. Suggested values are between 2 and 8, and
-smaller subiteration lengths will result in less run-time.}
+lengths to \emph{Subiterative Convergence}. Recommended values are between 2 and 8.
+Smaller subiteration lengths result in shorter run-time.}
 
-\item{search_radius}{a positive integer for the maximum amount allowed to increase
-or decrease the rank of each object in the \emph{Greedy Algorithm}. The default value
-of \code{0} is used to update the rank of each object to all possible ranks. It is
-recommended to use a search radius of less than or equal to 30.}
+\item{search_radius}{a positive integer for the maximum change in the rank of each
+object in the \emph{Greedy Algorithm}. The default value
+of \code{0} considers all possible rank changes for each object. It is
+recommended to use a search radius of less than or equal to \eqn{\min(30, \lfloor \mbox{n}/2 \rfloor)}{min(30, floor(n/2))}.}
 
-\item{starting_rkg}{a vector of length n with an initial ranking to begin FUR on. If
-the default value of an empty vector is used, then the mean seed ranking is calculated
-as initial input to FUR.}
+\item{seed_rkg}{a vector of length \code{n} with an initial ranking to begin FUR. If
+the default value of an empty vector is used, then the \code{mean seed ranking} is adopted
+as the initial ranking to FUR.}
 }
 \value{
-A matrix containing the consensus ranking, total Kemeny distance, average
-tau correlation coefficient.
+A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
+tau correlation coefficient corresponding to the consensus ranking.
 }
 \description{
-\emph{FUR} contains three branches - Fixed, Update, and Range - to reach
-a consensus ranking by iteratively using \emph{Subiterative Convergence} and \emph{Greedy Algorithm}.
-See 'Details' for more information on each branch.
+\emph{FUR} is a heuristic algorithm to obtain a consensus ranking.
+It contains three branches -- Fixed, Update, and Range -- that use
+\emph{Subiterative Convergence} and \emph{Greedy Algorithm} iteratively.
+See `Details' for more information on each branch.
 }
 \details{
-The Fixed branch applies \emph{Subiterative Convergence} using only one subiteration
-length at at time.
+The Fixed branch applies \emph{Subiterative Convergence} using one subiteration
+length from \code{subit_len_list} at a time.
 
-The Update branch runs \emph{Subiterative Convergence} using the first
-subiteration length in the subiteration length list, and then uses the output in the
+The Update branch executes \emph{Subiterative Convergence} using the first
+subiteration length in \code{subit_len_list}, and then uses its output in the
 next call to \emph{Subiterative Convergence} with the next subiteration length in the list.
-This process repeats until every subiteration length in the list has been used.
+This process repeats until \code{subit_len_list} is exhausted.
 
-The Range branch calls \emph{Subiterative Convergence} on all subiteration lengths in the list
-and only retains the best ranking among these separate calls.
+The Range branch calls \emph{Subiterative Convergence} on all subiteration lengths in
+\code{subit_len_list} and only retains the best ranking among these separate calls.
 
 The output from the \emph{Subiterative Convergence} calls are fed into the \emph{Greedy Algorithm}
 as its seed ranking, and the FUR algorithm is terminated when the input to the
@@ -51,21 +52,23 @@ least once.
 }
 \examples{
 ## One subiteration length
-input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = 5)
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+    byrow = FALSE, ncol = 4)
 subit_len_list <- 2
 search_radius <- 1
 fur(input_rkgs, subit_len_list, search_radius) # Determined the consensus ranking, total Kemeny
                                               # distance, and average tau correlation coefficient
 
 ## Multiple subiteration lengths
-input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = 5)
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+    byrow = FALSE, ncol = 4)
 subit_len_list <- c(2,3)
 search_radius <- 1
 fur(input_rkgs, subit_len_list, search_radius)
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)
-input_rkgs <- t(as.matrix(data50x15[, -1]))
+input_rkgs <- as.matrix(data50x15[, -1])
 subit_len_list <- c(2, 3)
 search_radius <- 1
 fur(input_rkgs, subit_len_list, search_radius)
@@ -74,8 +77,8 @@ fur(input_rkgs, subit_len_list, search_radius)
 \references{
 Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-\url{https://doi.org/10.1016/j.cor.2018.06.007}
+\doi{10.1016/j.cor.2018.06.007}
 }
 \seealso{
-\code{\link{subit_convergence}}, \code{\link{rap_greedy_alg}}
+\code{\link{subit_convergence}}, \code{\link{rap_greedy_alg}}, \code{\link{sigfur}}
 }

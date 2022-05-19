@@ -1,7 +1,7 @@
-#' Simulated 50 $\times$ 15 Data
+#' Simulated 50  \eqn{\times}{ X }  15 Data
 #'
 #' Data of 50 objects and 15 attributes, which were randomly generated from the
-#' 100 $\times$ 15 simulated dataset (see \code{\link{data100x15}}). The first column contains the object
+#' 100  \eqn{\times}{ X }  15 simulated dataset (see \code{\link{data100x15}}). The first column contains the object
 #' names and each subsequent column is a complete ranking of the 50 objects.
 #'
 #' @docType data
@@ -32,7 +32,7 @@
 #'
 #' @source Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
-#' \url{https://doi.org/10.1016/j.cor.2018.06.007}
+#' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @examples
 #' data(data50x15)
