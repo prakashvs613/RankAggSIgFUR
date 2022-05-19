@@ -64,8 +64,10 @@ multiple given rankings from input rankings.</p>
 <dd><p>a matrix of rankings to be compared against the input rankings. Each row must be a
 complete ranking, meaning that all of the objects have a rank.</p></dd>
 <dt>input_rkgs</dt>
-<dd><p>a <code>n</code> by <code>k</code> matrix of <code>k</code> rankings of <code>n</code>
-objects, where each column is a complete ranking.</p></dd>
+<dd><p>a <code>k</code> by <code>n</code> matrix of <code>k</code> rankings of <code>n</code>
+objects, where each row is a complete ranking. Note that this is a transpose of
+matrix used for functions like <code>fur</code>, <code>sigfur</code>, <code>rap_greedy_alg</code>,
+and <code>subit_convergence</code>.</p></dd>
 <dt>pairs</dt>
 <dd><p>a <code>2</code> by <code>n choose 2</code> matrix of all combinations of
 object pairs of n objects, where each column contains a pair of object indices.</p></dd>

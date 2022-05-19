@@ -67,8 +67,10 @@ the first tied object with a higher rank.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>input_rkgs</dt>
-<dd><p>a <code>n</code> by <code>k</code> matrix of <code>k</code> rankings of <code>n</code> objects, where each column is
-a complete ranking.</p></dd>
+<dd><p>a <code>k</code> by <code>n</code> matrix of <code>k</code> rankings of <code>n</code>
+objects, where each row is a complete ranking. Note that this is a transpose of
+matrix used for functions like <code>fur</code>, <code>sigfur</code>, <code>rap_greedy_alg</code>,
+and <code>subit_convergence</code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -76,7 +78,7 @@ a complete ranking.</p></dd>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></code>, <code><a href="subit_convergence.html">subit_convergence</a></code>, <code><a href="fur.html">fur</a></code>, <code><a href="sigfur.html">sigfur</a></code></p></div>
     </div>
 
     <div id="ref-examples">
