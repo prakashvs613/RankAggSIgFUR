@@ -15,6 +15,8 @@
 #'
 #' @seealso \code{\link{rap_greedy_alg}}
 #'
+#' @keywords internal
+#'
 #' @export
 
 get_sub_rkgs <- function(seed_rkg, move_ind, search_radius) {

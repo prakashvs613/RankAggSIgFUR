@@ -44,7 +44,7 @@
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
 #' \doi{10.1016/j.cor.2018.06.007}
 #'
-#' @seealso \code{\link{subit_convergence}}, \code{\link{rap_greedy_alg}}, \code{\link{sigfur}}
+#' @seealso \code{\link{mean_seed}}, \code{\link{subit_convergence}}, \code{\link{rap_greedy_alg}}, \code{\link{sigfur}}
 #'
 #' @examples
 #' ## One subiteration length

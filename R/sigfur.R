@@ -32,7 +32,7 @@
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
 #' \doi{10.1016/j.cor.2018.06.007}
 #'
-#' @seealso \code{\link{seed_based_iteration}}, \code{\link{rap_greedy_alg}}, \code{\link{fur}}
+#' @seealso \code{\link{seed_based_iteration}}, \code{\link{rap_greedy_alg}}, \code{\link{fur}}, \code{\link{mean_seed}}
 #'
 #' @examples
 #' ## Four input rankings of five objects

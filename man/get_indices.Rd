@@ -22,3 +22,4 @@ are then used to find the object indices for the next step in \emph{Subiterative
 \seealso{
 \code{\link{subit_convergence}}
 }
+\keyword{internal}

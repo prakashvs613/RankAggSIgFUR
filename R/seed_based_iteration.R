@@ -10,11 +10,13 @@
 #' the seed ranking. An \code{omega} value of 1 corresponds to a single application of
 #' \emph{Subiterative Convergence}.
 #'
-#' @param input_rkgs a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-#' objects, where each column is a complete ranking.
+#' @param input_rkgs a \code{k} by \code{n} matrix of \code{k} rankings of \code{n} 
+#' objects, where each row is a complete ranking. Note that this is a transpose of 
+#' matrix used for functions like \code{fur}, \code{sigfur}, \code{rap_greedy_alg}, 
+#' and \code{subit_convergence}.
 #'
-#' @return A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
-#' tau correlation coefficient corresponding to the consensus ranking.
+#' @return A list containing the consensus ranking (expressed as ordering) and total
+#'  Kemeny distance corresponding to the consensus ranking.
 #'
 #' @references Badal, P. S., & Das, A. (2018). Efficient algorithms using subiterative
 #' convergence for Kemeny ranking problem. Computers & Operations Research, 98, 198-210.
@@ -22,9 +24,24 @@
 #'
 #' @seealso \code{\link{sigfur}}, \code{\link{subit_convergence}}, \code{\link{mean_seed}}
 #'
+#' @examples
+#' ## Four input rankings of five objects
+#' eta <- 2
+#' omega <- 10
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+#'     byrow = FALSE, ncol = 4)
+#' seed_based_iteration(eta, omega, t(input_rkgs)) # Determined seed-based iterations
+#'
+#' ## Included dataset of 15 input rankings of 50 objects
+#' eta <- 3
+#' omega <- 5
+#' data(data50x15)
+#' input_rkgs <- as.matrix(data50x15[, -1])
+#' seed_based_iteration(eta, omega, t(input_rkgs)) # Determined seed-based iterations
+#'
 #' @export
 
-seed_based_iteration <- function(eta, omega,input_rkgs) {
+seed_based_iteration <- function(eta, omega, input_rkgs) {
   n <- dim(input_rkgs)[2]
   k <- dim(input_rkgs)[1]
   pairs <- combinat::combn(1:n, 2, simplify = T)

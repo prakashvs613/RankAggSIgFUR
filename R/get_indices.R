@@ -12,6 +12,8 @@
 #'
 #' @seealso \code{\link{subit_convergence}}
 #'
+#' @keywords internal
+#'
 #' @export
 
 get_indices <- function(x, y) {

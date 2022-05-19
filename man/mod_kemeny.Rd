@@ -7,8 +7,10 @@
 mod_kemeny(input_rkgs, universe_rkgs, obj_pairs)
 }
 \arguments{
-\item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each column is a complete ranking.}
+\item{input_rkgs}{a \code{k} by \code{n} matrix of \code{k} rankings of \code{n}
+objects, where each row is a complete ranking. Note that this is a transpose of
+matrix used for functions like \code{fur}, \code{sigfur}, \code{rap_greedy_alg},
+and \code{subit_convergence}.}
 
 \item{universe_rkgs}{a matrix containing all possible permutations of ranking
 n objects. Each row in this matrix represents one permuted ranking.}

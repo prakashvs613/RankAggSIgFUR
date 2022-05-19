@@ -10,8 +10,10 @@ totalKem_mult(rkgs, input_rkgs, pairs)
 \item{rkgs}{a matrix of rankings to be compared against the input rankings. Each row must be a
 complete ranking, meaning that all of the objects have a rank.}
 
-\item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
-objects, where each column is a complete ranking.}
+\item{input_rkgs}{a \code{k} by \code{n} matrix of \code{k} rankings of \code{n}
+objects, where each row is a complete ranking. Note that this is a transpose of
+matrix used for functions like \code{fur}, \code{sigfur}, \code{rap_greedy_alg},
+and \code{subit_convergence}.}
 
 \item{pairs}{a \code{2} by \code{n choose 2} matrix of all combinations of
 object pairs of n objects, where each column contains a pair of object indices.}
@@ -28,3 +30,4 @@ multiple given rankings from input rankings.
 \code{\link{mod_kemeny}}, \code{\link{subit_convergence}}, \code{\link{rap_greedy_alg}},
 \code{\link{seed_based_iteration}}
 }
+\keyword{internal}

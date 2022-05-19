@@ -7,8 +7,10 @@
 mean_seed(input_rkgs)
 }
 \arguments{
-\item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n} objects, where each column is
-a complete ranking.}
+\item{input_rkgs}{a \code{k} by \code{n} matrix of \code{k} rankings of \code{n}
+objects, where each row is a complete ranking. Note that this is a transpose of
+matrix used for functions like \code{fur}, \code{sigfur}, \code{rap_greedy_alg},
+and \code{subit_convergence}.}
 }
 \value{
 A vector containing the mean seed ranking of the input rankings.
@@ -32,5 +34,5 @@ mean_seed(input_rkgs)
 
 }
 \seealso{
-\code{\link[base]{rank}}
+\code{\link[base]{rank}}, \code{\link{subit_convergence}}, \code{\link{fur}}, \code{\link{sigfur}}
 }

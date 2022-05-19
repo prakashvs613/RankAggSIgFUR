@@ -19,6 +19,8 @@
 #'
 #' @return A numeric of the average tau correlation based on the total Kemeny distance.
 #'
+#' @keywords internal
+#'
 #' @export
 
 # Average tau correlation coefficient

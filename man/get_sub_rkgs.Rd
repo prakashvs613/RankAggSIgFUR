@@ -25,3 +25,4 @@ Cyclical moving is permitted in the event of overflow.
 \seealso{
 \code{\link{rap_greedy_alg}}
 }
+\keyword{internal}
