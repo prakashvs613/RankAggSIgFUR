@@ -1,3 +1,3 @@
-# RankAggSIgFUR 0.0.1
+# RankAggSIgFUR 0.1.0
 
 * Initial release
