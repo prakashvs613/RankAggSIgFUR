@@ -26,7 +26,7 @@
 #' \doi{10.1016/j.cor.2018.06.007}
 #'
 #' @references Mattei, N., & Walsh, T. (2013, November). Preflib: A library for
-#' preferences \url{http://www.preflib.org/}. In International conference on algorithmic
+#' preferences \url{https://www.preflib.org/}. In International conference on algorithmic
 #' decision theory (pp. 259-270). Springer, Berlin, Heidelberg.
 #'
 #' @source \url{https://www.preflib.org/}

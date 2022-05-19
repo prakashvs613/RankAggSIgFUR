@@ -26,6 +26,6 @@ While it is more common, total Kemeny distance may be preferred to avoid roundin
 \references{
 Emond, E. J., & Mason, D. W. (2002). A new rank correlation coefficient with
 application to the consensus ranking problem. Journal of Multi-Criteria Decision
-Analysis, 11(1), 17-28. \doi{10.1002/mcda.313}
+Analysis, 11(1), 17-28.
 }
 \keyword{internal}
