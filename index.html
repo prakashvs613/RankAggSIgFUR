@@ -82,7 +82,7 @@
 <em>Prakash Singh Badal, <a href="mailto:aprakashn@gmail.com" class="email">aprakashn@gmail.com</a></em><a class="anchor" aria-label="anchor" href="#prakash-singh-badal-aprakashngmailcom"></a>
 </h4>
 <!-- badges: start -->
-<!-- badges: end --><p>Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms – FUR and SIgFUR – are developed. The proposed algorithms are Polynomially bounded algorithms to aggregate complete rankings under Kemeny’s axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, Subiterative Convergence and Greedy Algorithm. The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see <a href="https://doi.org/10.1016/j.cor.2018.06.007" class="external-link">Badal and Das (2018)</a>. for more details.</p>
+<!-- badges: end --><p>Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms – FUR and SIgFUR – are developed. The proposed algorithms are Polynomially bounded algorithms to aggregate complete rankings under Kemeny’s axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, <em>Subiterative Convergence</em> and <em>Greedy Algorithm</em>. The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see <a href="https://doi.org/10.1016/j.cor.2018.06.007" class="external-link">Badal and Das (2018)</a>. for more details.</p>
 </div>
 <div class="section level2">
 <h2 id="development-status">Development status<a class="anchor" aria-label="anchor" href="#development-status"></a>
@@ -130,8 +130,8 @@
 <span class="va">omega_sbi</span> <span class="op">&lt;-</span> <span class="fl">10</span>
 <span class="va">subit_len_list_fur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
 <span class="va">search_radius</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="fu"><a href="reference/sigfur.html">sigfur</a></span><span class="op">(</span><span class="va">input_rkgs</span>, <span class="va">subit_len_list_sbi</span>, <span class="va">omega_sbi</span>, <span class="va">subit_len_list_fur</span>, <span class="va">search_radius</span><span class="op">)</span> <span class="co"># Determined the </span>
-                            <span class="co"># consensus ranking, total Kemeny distance, and average tau correlation coefficient</span>
+<span class="fu"><a href="reference/sigfur.html">sigfur</a></span><span class="op">(</span><span class="va">input_rkgs</span>, <span class="va">subit_len_list_sbi</span>, <span class="va">omega_sbi</span>, <span class="va">subit_len_list_fur</span>, <span class="va">search_radius</span><span class="op">)</span> <span class="co"># Determined the consensus ranking,</span>
+                            <span class="co"># total Kemeny distance, and average tau correlation coefficient</span>
 
 <span class="co"># Included dataset of 15 input rankings of 50 objects</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data50x15</span><span class="op">)</span>
@@ -142,6 +142,11 @@
 <span class="va">search_radius</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="fu"><a href="reference/sigfur.html">sigfur</a></span><span class="op">(</span><span class="va">input_rkgs</span>, <span class="va">subit_len_list_sbi</span>, <span class="va">omega_sbi</span>, <span class="va">subit_len_list_fur</span>, <span class="va">search_radius</span><span class="op">)</span></code></pre>
 <p>Check out the vignettes for more examples and details.</p>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>This package is released in the public domain under the General Public License <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link">GPL</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
