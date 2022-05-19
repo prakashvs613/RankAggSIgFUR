@@ -19,7 +19,7 @@ Config/testthat/edition: 3
 NeedsCompilation: yes
 URL: https://github.com/prakashvs613/RankAggSIgFUR
 Packaged: 2022-05-18 23:05:08 UTC; aprak
-Author: Hannah Parker [aut],
-  Rakhi Singh [cre, aut] (<https://orcid.org/0000-0003-3469-295X>),
+Author: Rakhi Singh [cre, aut] (<https://orcid.org/0000-0003-3469-295X>),
+  Hannah Parker [aut],
   Prakash Singh Badal [aut] (<https://orcid.org/0000-0003-4097-8444>)
 Maintainer: Rakhi Singh <agrakhi@gmail.com>
