@@ -1,5 +1,5 @@
 [![CRAN Status](https://www.r-pkg.org/badges/version/RankAggSIgFUR)](https://cran.r-project.org/package=RankAggSIgFUR)
-[![Travis build status](https://travis-ci.com/prakashvs613/RankAggSIgFUR.svg?branch=master)](https://travis-ci.org/prakashvs613/RankAggSIgFUR)
+[![R-CMD-check](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml)
 
 
 # RankAggSIgFUR: Polynomially Bounded Rank Aggregation Algorithms under Kemeny's Axiomatic Approach
