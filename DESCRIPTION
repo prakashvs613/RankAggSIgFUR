@@ -1,6 +1,5 @@
 Package: RankAggSIgFUR
-Title: Polynomially Bounded Rank Aggregation under Kemeny's Axiomatic
-        Approach
+Title: Polynomially Bounded Rank Aggregation under Kemeny's Axiomatic Approach
 Version: 0.1.0
 Authors@R: c(
    person("Hannah", "Parker", email = "parkerhannah09@gmail.com", role = "aut"),
