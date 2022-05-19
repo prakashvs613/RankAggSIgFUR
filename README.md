@@ -1,6 +1,6 @@
 # RankAggSIgFUR: Polynomially Bounded Rank Aggregation Algorithms under Kemeny's Axiomatic Approach
 
-<img src="_images/logo_SIgFUR.png" width="300px" align="right" style="padding-left:10px;background-color:white;" />
+<img src="_images/logo_SIgFUR.png" width="350px" align="right" style="padding-left:10px;background-color:white;" />
 
 #### *Hannah Parker, parkerhannah09@gmail.com*
 #### *Rakhi Singh, agrakhi@gmail.com*
