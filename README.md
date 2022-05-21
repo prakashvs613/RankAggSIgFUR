@@ -13,7 +13,6 @@
 [![pkgdown](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/0o2rg3h22bbb4yt7/branch/main?svg=true)](https://ci.appveyor.com/project/prakashvs613/rankaggsigfur/branch/main)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/RankAggSIgFUR)](https://cranlogs.r-pkg.org/badges/grand-total/RankAggSIgFUR)
-
 <!-- badges: end -->
 
 Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms — FUR and SIgFUR — are developed in the current package, **RankAggSIgFUR** (pronounced as _rank-agg-cipher_). The proposed algorithms are polynomially bounded algorithms to aggregate complete rankings under Kemeny's axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, _Subiterative Convergence_ and _Greedy Algorithm_.  The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see [Badal and Das (2018)](https://doi.org/10.1016/j.cor.2018.06.007). for more details.
@@ -24,10 +23,23 @@ This package is live on CRAN. The programs are in stable development phase. Any 
 
 ## Installation
 
+Most stable version pushed to CRAN can be installed directly from CRAN:
+
 ```{r}
 install.packages("RankAggSIgFUR")
+```
+
+The latest version of the package under development can be installed from GitHub:
+
+```{r}
+install.packages("devtools")
+library(devtools)
 remotes::install_github("prakashvs613/RankAggSIgFUR")
 ```
+
+### Bug reports
+
+Please submit any bugs or issues (or suggestions) using the [issues](https://github.com/prakashvs613/RankAggSIgFUR/issues) tab of the repo.
 
 ## Usage
 
