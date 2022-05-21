@@ -80,7 +80,7 @@
 <em>Prakash Singh Badal, <a href="mailto:aprakashn@gmail.com" class="email">aprakashn@gmail.com</a></em><a class="anchor" aria-label="anchor" href="#prakash-singh-badal-aprakashngmailcom"></a>
 </h4>
 <!-- badges: start -->
-<!-- badges: end --><p>Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms — FUR and SIgFUR — are developed in the current package, <strong>RankAggSIgFUR</strong> (pronounced as <em>rank-agg-cipher</em>). The proposed algorithms are polynomially bounded algorithms to aggregate complete rankings under Kemeny’s axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, <em>Subiterative Convergence</em> and <em>Greedy Algorithm</em>. The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see <a href="https://doi.org/10.1016/j.cor.2018.06.007" class="external-link">Badal and Das (2018)</a>. for more details.</p>
+<p>Rank aggregation problem is useful to practitioners in political science, computer science, social science, medical science, and allied fields. The objective is to identify a consensus ranking of n objects that best fits independent rankings given by k different judges. Under the Kemeny framework, a distance metric called Kemeny distance is minimized to obtain consensus ranking. The problem is of the n! order and quickly becomes infeasible. To address the problem, two heuristics-based algorithms — FUR and SIgFUR — are developed in the current package, <strong>RankAggSIgFUR</strong> (pronounced as <em>rank-agg-cipher</em>). The proposed algorithms are polynomially bounded algorithms to aggregate complete rankings under Kemeny’s axiomatic framework. These algorithms in turn depend on newly developed basic algorithms, <em>Subiterative Convergence</em> and <em>Greedy Algorithm</em>. The results are generally superior to existing algorithms in terms of both performance (Kemeny distance) and run-time. Even for large number of objects, the proposed algorithms run in few minutes. Please see <a href="https://doi.org/10.1016/j.cor.2018.06.007" class="external-link">Badal and Das (2018)</a>. for more details.</p>
 </div>
 <div class="section level2">
 <h2 id="development-status">Development status<a class="anchor" aria-label="anchor" href="#development-status"></a>
@@ -90,8 +90,17 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<pre class="{r}"><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"RankAggSIgFUR"</span><span class="op">)</span>
+<p>Most stable version pushed to CRAN can be installed directly from CRAN:</p>
+<pre class="{r}"><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"RankAggSIgFUR"</span><span class="op">)</span></code></pre>
+<p>The latest version of the package under development can be installed from GitHub:</p>
+<pre class="{r}"><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"prakashvs613/RankAggSIgFUR"</span><span class="op">)</span></code></pre>
+<div class="section level3">
+<h3 id="bug-reports">Bug reports<a class="anchor" aria-label="anchor" href="#bug-reports"></a>
+</h3>
+<p>Please submit any bugs or issues (or suggestions) using the <a href="https://github.com/prakashvs613/RankAggSIgFUR/issues" class="external-link">issues</a> tab of the repo.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
