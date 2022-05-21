@@ -12,6 +12,7 @@
 [![R-CMD-check](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/0o2rg3h22bbb4yt7/branch/main?svg=true)](https://ci.appveyor.com/project/prakashvs613/rankaggsigfur/branch/main)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/RankAggSIgFUR)](https://cranlogs.r-pkg.org/badges/grand-total/RankAggSIgFUR)
 
 <!-- badges: end -->
 
@@ -19,7 +20,7 @@ Rank aggregation problem is useful to practitioners in political science, comput
 
 ## Development status
 
-This package is submitted to CRAN. The programs are in stable development phase. Any major changes for complete rankings is unlikely at this time. New additions to include tied or incomplete rankings may be added over time.
+This package is live on CRAN. The programs are in stable development phase. Any major changes for complete rankings is unlikely at this time. New additions to include tied or incomplete rankings may be added over time.
 
 ## Installation
 
