@@ -11,6 +11,7 @@
 [![CRAN Status](https://www.r-pkg.org/badges/version/RankAggSIgFUR)](https://cran.r-project.org/package=RankAggSIgFUR)
 [![R-CMD-check](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/prakashvs613/RankAggSIgFUR/actions/workflows/pkgdown.yaml)
+[![DOI](https://zenodo.org/badge/DOI//10.5281/zenodo.3138920.svg)](https://doi.org//10.5281/zenodo.6579083)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/0o2rg3h22bbb4yt7/branch/main?svg=true)](https://ci.appveyor.com/project/prakashvs613/rankaggsigfur/branch/main)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/RankAggSIgFUR)](https://cranlogs.r-pkg.org/badges/grand-total/RankAggSIgFUR)
 <!-- badges: end -->
