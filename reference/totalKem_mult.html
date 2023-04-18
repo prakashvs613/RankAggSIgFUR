@@ -55,7 +55,7 @@ multiple given rankings from input rankings.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">totalKem_mult</span><span class="op">(</span><span class="va">rkgs</span>, <span class="va">input_rkgs</span>, <span class="va">pairs</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">totalKem_mult</span><span class="op">(</span><span class="va">rkgs</span>, <span class="va">input_rkgs</span>, <span class="va">pairs</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,18 +63,25 @@ multiple given rankings from input rankings.</p>
     <dl><dt>rkgs</dt>
 <dd><p>a matrix of rankings to be compared against the input rankings. Each row must be a
 complete ranking, meaning that all of the objects have a rank.</p></dd>
+
+
 <dt>input_rkgs</dt>
 <dd><p>a <code>k</code> by <code>n</code> matrix of <code>k</code> rankings of <code>n</code>
 objects, where each row is a complete ranking. Note that this is a transpose of
 matrix used for functions like <code>fur</code>, <code>sigfur</code>, <code>rap_greedy_alg</code>,
 and <code>subit_convergence</code>.</p></dd>
+
+
 <dt>pairs</dt>
 <dd><p>a <code>2</code> by <code>n choose 2</code> matrix of all combinations of
 object pairs of n objects, where each column contains a pair of object indices.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A vector of the total Kemeny distance, the maximum Kemeny distance of
+    
+
+<p>A vector of the total Kemeny distance, the maximum Kemeny distance of
 the individual Kemeny distances, and the variance of the individual Kemeny distances.</p>
     </div>
     <div id="see-also">
@@ -95,7 +102,7 @@ the individual Kemeny distances, and the variance of the individual Kemeny dista
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -63,7 +63,7 @@ through 300, and by adding 300 to obtain ranking 301 through 400.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data400x15</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data400x15</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="format">
@@ -127,12 +127,12 @@ convergence for Kemeny ranking problem. Computers &amp; Operations Research, 98,
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data400x15</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">input_rkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data400x15</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">obj_names</span> <span class="op">&lt;-</span> <span class="va">data400x15</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Determine the mean seed ranking</span></span>
-<span class="r-in"><span class="fu"><a href="mean_seed.html">mean_seed</a></span><span class="op">(</span><span class="va">input_rkgs</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data400x15</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">input_rkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data400x15</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">obj_names</span> <span class="op">&lt;-</span> <span class="va">data400x15</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Determine the mean seed ranking</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="mean_seed.html">mean_seed</a></span><span class="op">(</span><span class="va">input_rkgs</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  59  54  84  55  88  10  16  44  45   8  73  63  94  61  33  14  27  51</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [19]  41  28  23  38 100  87  43  58  18  97  25  47  71  78  39  96  77  62</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [37]  15  32   9  65  98  26  83   3  12  48  91  31  52  64  90  82  34  80</span>
@@ -170,7 +170,7 @@ convergence for Kemeny ranking problem. Computers &amp; Operations Research, 98,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
