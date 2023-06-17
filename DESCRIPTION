@@ -1,6 +1,6 @@
 Package: RankAggSIgFUR
 Title: Polynomially Bounded Rank Aggregation under Kemeny's Axiomatic Approach
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
    person("Hannah", "Parker", email = "parkerhannah09@gmail.com", role = "aut"),
    person("Rakhi", "Singh", email = "agrakhi@gmail.com", role = c("cre", "aut"), comment = c(ORCID = "0000-0003-3469-295X")),
@@ -9,8 +9,8 @@ Description: Polynomially bounded algorithms to aggregate complete rankings unde
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
-Depends: R (>= 2.10)
+RoxygenNote: 7.2.3
+Depends: R (>= 3.5.0)
 LazyData: true
 Imports: Rfast, combinat
 Suggests: testthat (>= 3.0.0)
