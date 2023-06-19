@@ -14,6 +14,9 @@
 #' @param pairs a \code{2} by \code{n choose 2} matrix of all combinations of
 #' object pairs of n objects, where each column contains a pair of object indices.
 #'
+#' @param wt a \code{k}-length vector containing weights for each
+#' judge or attribute. An optional parameter. 
+#'
 #' @return A vector of the total Kemeny distance, the maximum Kemeny distance of
 #' the individual Kemeny distances, and the variance of the individual Kemeny distances.
 #'
@@ -24,9 +27,9 @@
 #'
 #' @export
 
-totalKem_mult <- function(rkgs, input_rkgs, pairs){
+totalKem_mult <- function(rkgs, input_rkgs, pairs, wt=wt){
   retMat <- matrix(0, nrow=dim(rkgs)[1], ncol=3)
-
+  
   # Get the total Kemeny distance, maximum Kemeny distance, and variance for
   # each of the given rankings and the input rankings
   for(i in 1:dim(rkgs)[1]) {
@@ -34,10 +37,11 @@ totalKem_mult <- function(rkgs, input_rkgs, pairs){
 	  rkg = rkgs[i,, drop=F]
 	  k <- dim(input_rkgs)[1]
   score_vector <- rep(0, k)
-  vec_rkg <- (rkg[pairs[1,]] - rkg[pairs[2,]])
+ 
+  vec_rkg <- (rkg[pairs[1,,drop=F]] - rkg[pairs[2,,drop=F]])
 
   # Find the differences in rankings for each object pair in the input rankings
-  mat_inprkgs <- ((input_rkgs[,pairs[1,]] - input_rkgs[,pairs[2,]]))
+  mat_inprkgs <- ((input_rkgs[,pairs[1,,drop=F]] - input_rkgs[,pairs[2,,drop=F]]))
   #print(mat_inprkgs)
   if(ncol(pairs)==1){
     mat_inprkgs <- matrix(mat_inprkgs,ncol=1)
@@ -50,9 +54,13 @@ totalKem_mult <- function(rkgs, input_rkgs, pairs){
 
   # Determine the total Kemeny distances for the ranking and each input ranking
   score_vector <- 2*Rfast::rowsums(indiv_score < 0) + Rfast::rowsums(indiv_score == 0)
-
-   retVec = c(sum(score_vector), max(score_vector), stats::var(score_vector))
-
+  # print(score_vector)
+   xm <- stats::weighted.mean(score_vector, wt)
+   v <- sum(wt * ((score_vector - xm)^2))/(sum(wt)-1)
+ 
+  # retVec = c(sum(score_vector), max(score_vector), stats::var(score_vector))
+   retVec <- c(sum(score_vector*wt), max(score_vector), v)
+   
     ## end of block
     retMat[i,] <- retVec
   }

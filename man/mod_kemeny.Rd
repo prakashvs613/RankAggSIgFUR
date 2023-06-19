@@ -4,7 +4,7 @@
 \alias{mod_kemeny}
 \title{Modified Kemeny Rank Aggregation}
 \usage{
-mod_kemeny(input_rkgs, universe_rkgs, obj_pairs)
+mod_kemeny(input_rkgs, universe_rkgs, obj_pairs, wt)
 }
 \arguments{
 \item{input_rkgs}{a \code{k} by \code{n} matrix of \code{k} rankings of \code{n}
@@ -17,6 +17,9 @@ n objects. Each row in this matrix represents one permuted ranking.}
 
 \item{obj_pairs}{a \code{2} by \code{n choose 2} matrix of all combinations of
 object pairs of n objects, where each column contains a pair of object indices.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
@@ -43,8 +46,10 @@ n <- 5
 input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = n)
 uni_rkgs <- matrix(unlist(combinat::permn(c(1:n))), byrow = TRUE, ncol = n)
 obj_pairs <- combinat::combn(1:n,2, simplify=TRUE)
-mod_kemeny(input_rkgs, uni_rkgs, obj_pairs) # Computed consensus ranking, total Kemeny distance,
-                                            # and average tau correlation coefficient
+wt <- rep(1,nrow(input_rkgs))
+mod_kemeny(input_rkgs, uni_rkgs, obj_pairs,wt=wt) # Computed consensus ranking, 
+                                                  # total Kemeny distance,
+                                            #and average tau correlation coefficient
 
 }
 \references{

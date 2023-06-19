@@ -15,6 +15,13 @@
 #'
 #' @param universe_rkgs a matrix containing all possible permutations of ranking
 #' \code{n} objects. Each column in this matrix represents one permuted ranking.
+#' An optional parameter. 
+#' 
+#' @param objNames a \code{n}-length vector containing object names. An optional 
+#'  parameter. 
+#' 
+#' @param wt a \code{k}-length vector containing weights for each
+#' judge or attribute. An optional parameter. 
 #'
 #' @return A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
 #' tau correlation coefficient corresponding to the consensus ranking.
@@ -41,6 +48,29 @@
 #'     byrow = FALSE, ncol = 4)
 #' subit_convergence(eta, seed_rkg, input_rkgs) # Shows a warning and returns seed ranking
 #'
+#' ## Five input rankings with five objects
+#' ## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+#' ## we should get the same answer as the first examples
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+#'                        2, 4, 5, 3),byrow = FALSE, ncol = 5)
+#' eta <- 3
+#' seed_rkg <- c(1, 2, 3, 4, 5)
+#' wt = c(1,1,0,1,1)
+#' subit_convergence(eta, seed_rkg, input_rkgs, wt=wt) # Determined the consensus ranking, total Kemeny
+#'                                              # distance, and average tau correlation coefficient
+#'
+#' ## Using five input rankings with five objects with prepare_data to 
+#' ## automatically prepare the weight vector
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+#'                        2, 4, 5, 3),byrow = FALSE, ncol = 5)
+#' out = prepare_data(input_rkgs) 
+#' input_rkgs = out$input_rkgs
+#' wt = out$wt
+#' eta <- 3
+#' seed_rkg <- c(1, 2, 3, 4, 5)
+#' subit_convergence(eta, seed_rkg, input_rkgs, wt=wt) # Determined the consensus ranking, total Kemeny
+#'                                              # distance, and average tau correlation coefficient
+#'
 #' ## Included dataset of 15 input rankings of 50 objects
 #' data(data50x15)
 #' input_rkgs <- as.matrix(data50x15[, -1])
@@ -50,30 +80,58 @@
 #'
 #' @export
 
-subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
+subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c(), objNames = c(),wt = c()){
+
+
   input_rkgs <- t(input_rkgs)
   in_eq_out <- F
   n <- dim(input_rkgs)[2]
   k <- dim(input_rkgs)[1]
+  
+  if (length(wt) == 0) {
+    wt <- rep(1,k)
+  } 
+  
   itermax <- 200 # maximum number of iterations for cyclic convergence
   out_rkgs <- matrix(nrow = itermax, ncol = n)
-  obj_pairs_full <- combinat::combn(1:n, 2, simplify = T)
+  if (n == 2){
+    obj_pairs_full <- matrix(c(1,2), ncol = 1)
+  } else{
+    obj_pairs_full <- combinat::combn(1:n, 2, simplify = T)}
 
-  # Creating universe of rankings if not provided already
-  if (length(universe_rkgs) == 0) {
-    universe_rkgs <- matrix(unlist(combinat::permn(c(1:eta))), byrow = T, ncol = eta)
-  }
-
+  if (!all(Rfast::rowMaxs(input_rkgs,value=T) == n)){
+    stop("Seems like an incomplete ranking")     
+  } 
   # subiteration length is not at least 2
   if (eta == 1) {
     warning("Caution: eta=1 has no effect on subiteration converence, so the intial starting ranking is returned.")
     out_rkg <- seed_rkg
-    totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full)[1]
+    totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full,wt=wt)[1]
 
+  } else if (eta >= 10 & n >= eta) {
+    stop("Caution: eta=10 is too large for me to handle. Please use a smaller eta")     
+  } else if (eta >= 10 & n < eta) {
+    warning("Caution: eta is too large for me to handle and number of objects is smaller than eta.") 
+    warning("So, I am returning the best ranking according to eta = n") 
+    obj_pairs <- combinat::combn(1:n, 2, simplify = T)
+    
+    # Creating universe of rankings for eta = n if not provided already
+    if (length(universe_rkgs) == 0) {
+      universe_rkgs <- matrix(unlist(combinat::permn(c(1:n))), byrow = T, ncol = n)
+    }
+    
+    out_rkgFull <- mod_kemeny(input_rkgs, universe_rkgs, obj_pairs,wt=wt)
+    out_rkg <- out_rkgFull$ConsensusRanking
+    totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full,wt=wt)[1]
   } else{
+    
+    # Creating universe of rankings if not provided already
+    if (length(universe_rkgs) == 0) {
+      universe_rkgs <- matrix(unlist(combinat::permn(c(1:eta))), byrow = T, ncol = eta)
+    }
 
     # Create object pairs
-    if (eta == 2){
+    if (eta == 2 | n == 2){
       obj_pairs <- matrix(c(1,2), ncol = 1)
     } else{
       obj_pairs <- combinat::combn(1:eta, 2, simplify = T)}
@@ -96,7 +154,9 @@ subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
         # Get subset of rankings for the current eta-th objects
         sub_rkgs = Rfast::rowRanks(input_rkgs[,objs], method = "first")
         # Get the optimal kemeny ranking of the subset
-        mod_out1 <- mod_kemeny(sub_rkgs, universe_rkgs, obj_pairs)
+       
+        mod_out1 <- mod_kemeny(sub_rkgs, universe_rkgs, obj_pairs,wt=wt)
+      
         mod_out <- matrix(unlist(mod_out1), nrow = 1, byrow = T)
         # Determines the index of ranking in ascending order
         inds <- unlist(sapply(c(1:eta), get_indices, y = mod_out[, 1:eta]))
@@ -146,18 +206,27 @@ subit_convergence <- function(eta , seed_rkg, input_rkgs, universe_rkgs = c()){
     #if not converged in 200 iterations, determine the consensus ranking
     # among the 200 output rankings
     if(in_eq_out == F & iter > itermax) {
-      totKAll <- totalKem_mult(out_rkgs, input_rkgs, obj_pairs_full)[,1]
-      ind_out = which.min(totKAll)
-      out_rkg = out_rkgs[ind_out, ]
+	  totKAll <- totalKem_mult(out_rkgs, input_rkgs, obj_pairs_full,wt=wt)[,1]
+      ind_out <- which.min(totKAll)
+      out_rkg <- out_rkgs[ind_out, ]
 
       # Get the total Kemeny distance of the converged output ranking
     } else {
-      totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full)[1]
+	  totK <- totalKem_mult(matrix(out_rkg,nrow=1), input_rkgs, obj_pairs_full,wt=wt)[1]
     }
   }
+  
 
-  avg_tau <- compute_avg_tau(totK, n, k)
+
+
+  avg_tau <- compute_avg_tau(totK, n, k, wt = wt)
   results <- matrix(c(out_rkg, totK, avg_tau), nrow = 1)
+  
+  # Naming the objects if the corresponding information is provided
+  if (length(objNames) != 0) {
+    out_rkg = objNames[c(out_rkg)]
+  }
+  
   return(list(ConsensusRanking = c(out_rkg), KemenyDistance = totK,
               tau = avg_tau))
 }

@@ -4,7 +4,14 @@
 \alias{subit_convergence}
 \title{Subiterative Convergence}
 \usage{
-subit_convergence(eta, seed_rkg, input_rkgs, universe_rkgs = c())
+subit_convergence(
+  eta,
+  seed_rkg,
+  input_rkgs,
+  universe_rkgs = c(),
+  objNames = c(),
+  wt = c()
+)
 }
 \arguments{
 \item{eta}{a subiteration length of number of objects to consider in the smaller
@@ -17,7 +24,14 @@ subset. Recommended \code{eta} values are between 2 and 8. Smaller \code{eta} va
 objects, where each column is a complete ranking.}
 
 \item{universe_rkgs}{a matrix containing all possible permutations of ranking
-\code{n} objects. Each column in this matrix represents one permuted ranking.}
+\code{n} objects. Each column in this matrix represents one permuted ranking.
+An optional parameter.}
+
+\item{objNames}{a \code{n}-length vector containing object names. An optional
+parameter.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
@@ -43,6 +57,29 @@ seed_rkg <- c(1, 2, 3, 4, 5)
 input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
     byrow = FALSE, ncol = 4)
 subit_convergence(eta, seed_rkg, input_rkgs) # Shows a warning and returns seed ranking
+
+## Five input rankings with five objects
+## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+## we should get the same answer as the first examples
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+eta <- 3
+seed_rkg <- c(1, 2, 3, 4, 5)
+wt = c(1,1,0,1,1)
+subit_convergence(eta, seed_rkg, input_rkgs, wt=wt) # Determined the consensus ranking, total Kemeny
+                                             # distance, and average tau correlation coefficient
+
+## Using five input rankings with five objects with prepare_data to 
+## automatically prepare the weight vector
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+out = prepare_data(input_rkgs) 
+input_rkgs = out$input_rkgs
+wt = out$wt
+eta <- 3
+seed_rkg <- c(1, 2, 3, 4, 5)
+subit_convergence(eta, seed_rkg, input_rkgs, wt=wt) # Determined the consensus ranking, total Kemeny
+                                             # distance, and average tau correlation coefficient
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)

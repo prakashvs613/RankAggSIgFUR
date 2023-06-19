@@ -9,7 +9,9 @@ sigfur(
   subit_len_list_sbi,
   omega_sbi,
   subit_len_list_fur,
-  search_radius
+  search_radius,
+  objNames = c(),
+  wt = c()
 )
 }
 \arguments{
@@ -31,6 +33,12 @@ lengths to \emph{FUR}.}
 object in the \emph{Greedy Algorithm} and \emph{FUR}. The default value
 of \code{0} considers all possible rank changes for each object. It is
 recommended to use a search radius of less than or equal to \eqn{\min(30, \lfloor \mbox{n}/2 \rfloor)}{min(30, floor(n/2))}.}
+
+\item{objNames}{a \code{n}-length vector containing object names. An optional
+parameter.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
@@ -52,6 +60,33 @@ omega_sbi <- 10
 subit_len_list_fur <- c(2:3)
 search_radius <- 1
 sigfur(input_rkgs, subit_len_list_sbi, omega_sbi, subit_len_list_fur, search_radius)
+# Determined the consensus ranking, total Kemeny distance, and average tau correlation coefficient
+
+## Five input rankings with five objects
+## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+## we should get the same answer as the first examples
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+subit_len_list_sbi <- c(2:3)
+omega_sbi <- 10
+subit_len_list_fur <- c(2:3)
+search_radius <- 1
+wt = c(1,1,0,1,1)
+sigfur(input_rkgs, subit_len_list_sbi, omega_sbi, subit_len_list_fur, search_radius, wt=wt)
+# Determined the consensus ranking, total Kemeny distance, and average tau correlation coefficient
+
+## Using five input rankings with five objects with prepare_data to 
+## automatically prepare the weight vector
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+out = prepare_data(input_rkgs) 
+input_rkgs = out$input_rkgs
+wt = out$wt
+subit_len_list_sbi <- c(2:3)
+omega_sbi <- 10
+subit_len_list_fur <- c(2:3)
+search_radius <- 1
+sigfur(input_rkgs, subit_len_list_sbi, omega_sbi, subit_len_list_fur, search_radius, wt=wt)
 # Determined the consensus ranking, total Kemeny distance, and average tau correlation coefficient
 
 ## Included dataset of 15 input rankings of 50 objects

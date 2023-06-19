@@ -12,6 +12,10 @@
 #' @param k a positive integer for the number of judges or attributes in the given
 #' ranking problem. This is also the number of input rankings from the problem.
 #'
+#' @param wt a \code{k}-length vector containing weights for each
+#' judge or attribute. An optional parameter. 
+#'  
+#'
 #' @references
 #' Emond, E. J., & Mason, D. W. (2002). A new rank correlation coefficient with
 #' application to the consensus ranking problem. Journal of Multi-Criteria Decision
@@ -24,6 +28,7 @@
 #' @export
 
 # Average tau correlation coefficient
-compute_avg_tau <- function(total_K, n, k){
-  1-((2*total_K)/(n*(n-1)*k))
+compute_avg_tau <- function(total_K, n, k, wt){
+  # Assign equal weights if none are given 
+  1-((2*total_K)/(n*(n-1)*sum(wt)))
 }

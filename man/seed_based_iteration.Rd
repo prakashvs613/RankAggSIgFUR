@@ -4,7 +4,7 @@
 \alias{seed_based_iteration}
 \title{Seed-Based Iteration}
 \usage{
-seed_based_iteration(eta, omega, input_rkgs)
+seed_based_iteration(eta, omega, input_rkgs, wt = c())
 }
 \arguments{
 \item{eta}{a subiteration length for intermittent \emph{Subiterative Convergence}. The recommended
@@ -18,6 +18,9 @@ the seed ranking. An \code{omega} value of 1 corresponds to a single application
 objects, where each row is a complete ranking. Note that this is a transpose of
 matrix used for functions like \code{fur}, \code{sigfur}, \code{rap_greedy_alg},
 and \code{subit_convergence}.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A list containing the consensus ranking (expressed as ordering) and total
@@ -34,6 +37,16 @@ omega <- 10
 input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
     byrow = FALSE, ncol = 4)
 seed_based_iteration(eta, omega, t(input_rkgs)) # Determined seed-based iterations
+
+## Five input rankings with five objects
+## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+## we should get the same answer as the first examples
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+eta <- 2
+omega <- 10
+wt = c(1,1,0,1,1)
+seed_based_iteration(eta, omega, t(input_rkgs), wt=wt) # Determined seed-based iterations
 
 ## Included dataset of 15 input rankings of 50 objects
 eta <- 3

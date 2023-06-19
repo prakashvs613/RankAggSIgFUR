@@ -4,7 +4,13 @@
 \alias{rap_greedy_alg}
 \title{Greedy Algorithm for Rank Aggregation}
 \usage{
-rap_greedy_alg(seed_rkg, input_rkgs, search_radius = 0)
+rap_greedy_alg(
+  seed_rkg,
+  input_rkgs,
+  search_radius = 0,
+  objNames = c(),
+  wt = c()
+)
 }
 \arguments{
 \item{seed_rkg}{an initial ranking to begin the algorithm. The algorithm is often used in
@@ -16,6 +22,12 @@ objects, where each column is a complete ranking.}
 \item{search_radius}{a positive integer for the maximum change in the rank of each
 object. The default value of \code{0} considers all possible rank changes for each object.
 Recommended value of search radius is less than or equal to \eqn{\min(30, \lfloor \mbox{n}/2 \rfloor)}{min(30, floor(n/2))}.}
+
+\item{objNames}{a \code{n}-length vector containing object names. An optional
+parameter.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
@@ -35,6 +47,28 @@ mean_seed_rkg <- mean_seed(t(input_rkgs))
 rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 0) # Determined the consensus ranking,
                                                              # total Kemeny distance, and average
                                                              # tau correlation coefficient
+
+## Five input rankings with five objects 
+## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+## we should get the same answer as the first examples
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+wt = c(1,1,0,1,1)
+mean_seed_rkg <- mean_seed(t(input_rkgs),wt=wt)
+rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 0,wt=wt) # Determined the
+#consensus ranking,  total Kemeny distance, and average tau correlation coefficient
+
+
+## Using five input rankings with five objects with prepare_data to 
+## automatically prepare the weight vector
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+out = prepare_data(input_rkgs) 
+input_rkgs = out$input_rkgs
+wt = out$wt
+mean_seed_rkg <- mean_seed(t(input_rkgs),wt=wt)
+rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 0,wt=wt) # Determined the
+#consensus ranking,  total Kemeny distance, and average tau correlation coefficient
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)

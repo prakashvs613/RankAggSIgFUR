@@ -4,7 +4,14 @@
 \alias{fur}
 \title{FUR}
 \usage{
-fur(input_rkgs, subit_len_list, search_radius, seed_rkg = c())
+fur(
+  input_rkgs,
+  subit_len_list,
+  search_radius,
+  seed_rkg = c(),
+  objNames = c(),
+  wt = c()
+)
 }
 \arguments{
 \item{input_rkgs}{a \code{n} by \code{k} matrix of \code{k} rankings of \code{n}
@@ -22,6 +29,12 @@ recommended to use a search radius of less than or equal to \eqn{\min(30, \lfloo
 \item{seed_rkg}{a vector of length \code{n} with an initial ranking to begin FUR. If
 the default value of an empty vector is used, then the \code{mean seed ranking} is adopted
 as the initial ranking to FUR.}
+
+\item{objNames}{a \code{n}-length vector containing object names. An optional
+parameter.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A list containing the consensus ranking (expressed as ordering), total Kemeny distance, and average
@@ -65,6 +78,28 @@ input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 
 subit_len_list <- c(2,3)
 search_radius <- 1
 fur(input_rkgs, subit_len_list, search_radius)
+
+## Five input rankings with five objects 
+## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+## we should get the same answer as the first examples
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+## Multiple subiteration lengths
+wt = c(1,1,0,1,1)
+subit_len_list <- c(2,3)
+search_radius <- 1
+fur(input_rkgs, subit_len_list, search_radius,wt=wt)
+
+## Using five input rankings with five objects with prepare_data to 
+## automatically prepare the weight vector
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+out = prepare_data(input_rkgs) 
+input_rkgs = out$input_rkgs
+wt = out$wt
+subit_len_list <- c(2,3)
+search_radius <- 1
+fur(input_rkgs, subit_len_list, search_radius,wt=wt)
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)
