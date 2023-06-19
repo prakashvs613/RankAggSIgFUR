@@ -4,7 +4,7 @@
 \alias{totalKem_mult}
 \title{Summary Statistics of Multiple given Rankings}
 \usage{
-totalKem_mult(rkgs, input_rkgs, pairs)
+totalKem_mult(rkgs, input_rkgs, pairs, wt = wt)
 }
 \arguments{
 \item{rkgs}{a matrix of rankings to be compared against the input rankings. Each row must be a
@@ -17,6 +17,9 @@ and \code{subit_convergence}.}
 
 \item{pairs}{a \code{2} by \code{n choose 2} matrix of all combinations of
 object pairs of n objects, where each column contains a pair of object indices.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A vector of the total Kemeny distance, the maximum Kemeny distance of

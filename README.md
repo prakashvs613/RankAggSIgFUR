@@ -21,7 +21,7 @@ Rank aggregation problem is useful to practitioners in political science, comput
 
 ## Development status
 
-This package is live on CRAN. The programs are in stable development phase. Any major changes for complete rankings is unlikely at this time. New additions to include tied or incomplete rankings may be added over time.
+This package is live on CRAN. The programs are in stable development phase. Each ranking could be given the corresponding weights in the version 1.0.0. This could, for example, help in reducing the size of the problem from k judges to a much fewer judges. Any major changes for complete rankings is unlikely at this time. New additions to include tied or incomplete rankings may be added over time.
 
 ## Installation
 

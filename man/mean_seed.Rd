@@ -4,13 +4,16 @@
 \alias{mean_seed}
 \title{Mean Seed Ranking}
 \usage{
-mean_seed(input_rkgs)
+mean_seed(input_rkgs, wt = c())
 }
 \arguments{
 \item{input_rkgs}{a \code{k} by \code{n} matrix of \code{k} rankings of \code{n}
 objects, where each row is a complete ranking. Note that this is a transpose of
 matrix used for functions like \code{fur}, \code{sigfur}, \code{rap_greedy_alg},
 and \code{subit_convergence}.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A vector containing the mean seed ranking of the input rankings.
@@ -24,8 +27,17 @@ the first tied object with a higher rank.
 }
 \examples{
 ## Four input rankings of five objects
-input_rkgs <- matrix(c(3, 2, 5, 1, 2, 3, 1, 2, 5, 1, 3, 4, 4, 5, 4, 5, 1, 4, 2, 3), ncol = 5)
-mean_seed(input_rkgs) # Found the mean seed ranking
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 2, 4, 5, 3),
+    byrow = FALSE, ncol = 4)
+mean_seed(t(input_rkgs)) # Found the mean seed ranking
+
+## Five input rankings with five objects 
+## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,
+## we should get the same answer as the first examples
+input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+                       2, 4, 5, 3),byrow = FALSE, ncol = 5)
+wt = c(1,1,0,1,1)
+mean_seed(t(input_rkgs),wt=wt) # Found the mean seed ranking
 
 ## Included dataset of 15 input rankings of 50 objects
 data(data50x15)

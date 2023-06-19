@@ -4,7 +4,7 @@
 \alias{compute_avg_tau}
 \title{Compute Average tau}
 \usage{
-compute_avg_tau(total_K, n, k)
+compute_avg_tau(total_K, n, k, wt)
 }
 \arguments{
 \item{total_K}{a positive integer as the total Kemeny distance of a ranking versus
@@ -14,6 +14,9 @@ the input rankings.}
 
 \item{k}{a positive integer for the number of judges or attributes in the given
 ranking problem. This is also the number of input rankings from the problem.}
+
+\item{wt}{a \code{k}-length vector containing weights for each
+judge or attribute. An optional parameter.}
 }
 \value{
 A numeric of the average tau correlation based on the total Kemeny distance.
