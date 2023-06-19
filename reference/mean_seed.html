@@ -21,7 +21,7 @@ the first tied object with a higher rank."><!-- mathjax --><script src="https://
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RankAggSIgFUR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -61,7 +61,7 @@ the first tied object with a higher rank.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mean_seed</span><span class="op">(</span><span class="va">input_rkgs</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mean_seed</span><span class="op">(</span><span class="va">input_rkgs</span>, wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,6 +71,11 @@ the first tied object with a higher rank.</p>
 objects, where each row is a complete ranking. Note that this is a transpose of
 matrix used for functions like <code>fur</code>, <code>sigfur</code>, <code>rap_greedy_alg</code>,
 and <code>subit_convergence</code>.</p></dd>
+
+
+<dt>wt</dt>
+<dd><p>a <code>k</code>-length vector containing weights for each
+judge or attribute. An optional parameter.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -87,8 +92,18 @@ and <code>subit_convergence</code>.</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Four input rankings of five objects</span></span></span>
-<span class="r-in"><span><span class="va">input_rkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">mean_seed</span><span class="op">(</span><span class="va">input_rkgs</span><span class="op">)</span> <span class="co"># Found the mean seed ranking</span></span></span>
+<span class="r-in"><span><span class="va">input_rkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    byrow <span class="op">=</span> <span class="cn">FALSE</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">mean_seed</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">input_rkgs</span><span class="op">)</span><span class="op">)</span> <span class="co"># Found the mean seed ranking</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 1 4 5 2</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Five input rankings with five objects </span></span></span>
+<span class="r-in"><span><span class="co">## 2nd ranking == 3rd ranking, so if a third object is weighted as zero,</span></span></span>
+<span class="r-in"><span><span class="co">## we should get the same answer as the first examples</span></span></span>
+<span class="r-in"><span><span class="va">input_rkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>                       <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>,byrow <span class="op">=</span> <span class="cn">FALSE</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">mean_seed</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">input_rkgs</span><span class="op">)</span>,wt<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="co"># Found the mean seed ranking</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 1 4 5 2</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Included dataset of 15 input rankings of 50 objects</span></span></span>

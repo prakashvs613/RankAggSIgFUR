@@ -18,7 +18,7 @@ multiple given rankings from input rankings."><!-- mathjax --><script src="https
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RankAggSIgFUR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -55,7 +55,7 @@ multiple given rankings from input rankings.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">totalKem_mult</span><span class="op">(</span><span class="va">rkgs</span>, <span class="va">input_rkgs</span>, <span class="va">pairs</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">totalKem_mult</span><span class="op">(</span><span class="va">rkgs</span>, <span class="va">input_rkgs</span>, <span class="va">pairs</span>, wt <span class="op">=</span> <span class="va">wt</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -75,6 +75,11 @@ and <code>subit_convergence</code>.</p></dd>
 <dt>pairs</dt>
 <dd><p>a <code>2</code> by <code>n choose 2</code> matrix of all combinations of
 object pairs of n objects, where each column contains a pair of object indices.</p></dd>
+
+
+<dt>wt</dt>
+<dd><p>a <code>k</code>-length vector containing weights for each
+judge or attribute. An optional parameter.</p></dd>
 
 </dl></div>
     <div id="value">

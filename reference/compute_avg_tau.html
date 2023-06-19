@@ -19,7 +19,7 @@ While it is more common, total Kemeny distance may be preferred to avoid roundin
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RankAggSIgFUR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@ While it is more common, total Kemeny distance may be preferred to avoid roundin
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_avg_tau</span><span class="op">(</span><span class="va">total_K</span>, <span class="va">n</span>, <span class="va">k</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_avg_tau</span><span class="op">(</span><span class="va">total_K</span>, <span class="va">n</span>, <span class="va">k</span>, <span class="va">wt</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -74,6 +74,11 @@ the input rankings.</p></dd>
 <dt>k</dt>
 <dd><p>a positive integer for the number of judges or attributes in the given
 ranking problem. This is also the number of input rankings from the problem.</p></dd>
+
+
+<dt>wt</dt>
+<dd><p>a <code>k</code>-length vector containing weights for each
+judge or attribute. An optional parameter.</p></dd>
 
 </dl></div>
     <div id="value">
