@@ -49,6 +49,18 @@
 #' rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 0,wt=wt) # Determined the
 #' #consensus ranking,  total Kemeny distance, and average tau correlation coefficient
 #'
+#'
+#' ## Using five input rankings with five objects with prepare_data to 
+#' ## automatically prepare the weight vector
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+#'                        2, 4, 5, 3),byrow = FALSE, ncol = 5)
+#' out = prepare_data(input_rkgs) 
+#' input_rkgs = out$input_rkgs
+#' wt = out$wt
+#' mean_seed_rkg <- mean_seed(t(input_rkgs),wt=wt)
+#' rap_greedy_alg(mean_seed_rkg, input_rkgs, search_radius = 0,wt=wt) # Determined the
+#' #consensus ranking,  total Kemeny distance, and average tau correlation coefficient
+#'
 #' ## Included dataset of 15 input rankings of 50 objects
 #' data(data50x15)
 #' input_rkgs <- as.matrix(data50x15[, -1])

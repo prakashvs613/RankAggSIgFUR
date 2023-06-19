@@ -79,6 +79,17 @@
 #' search_radius <- 1
 #' fur(input_rkgs, subit_len_list, search_radius,wt=wt)
 #'
+#' ## Using five input rankings with five objects with prepare_data to 
+#' ## automatically prepare the weight vector
+#' input_rkgs <- matrix(c(3, 2, 5, 4, 1, 2, 3, 1, 5, 4, 2, 3, 1, 5, 4, 5, 1, 3, 4, 2, 1, 
+#'                        2, 4, 5, 3),byrow = FALSE, ncol = 5)
+#' out = prepare_data(input_rkgs) 
+#' input_rkgs = out$input_rkgs
+#' wt = out$wt
+#' subit_len_list <- c(2,3)
+#' search_radius <- 1
+#' fur(input_rkgs, subit_len_list, search_radius,wt=wt)
+#'
 #' ## Included dataset of 15 input rankings of 50 objects
 #' data(data50x15)
 #' input_rkgs <- as.matrix(data50x15[, -1])
