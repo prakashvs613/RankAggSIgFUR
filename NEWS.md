@@ -4,3 +4,5 @@
 
 *New release incorporating the weights for judges
 
+*New release reduces the size of the rank aggregation problem, especially when the number of judges far exceeds n!
+
